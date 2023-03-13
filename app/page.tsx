@@ -1,7 +1,6 @@
 import { allPosts, Post } from 'contentlayer/generated'
 import { compareDesc, format, parseISO } from 'date-fns'
 import { Inter } from 'next/font/google'
-import Head from 'next/head'
 import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -37,9 +36,6 @@ export default async function Home() {
   return (
     <div className={inter.className}>
       <div className='mx-auto max-w-2xl py-16 text-center'>
-        <Head>
-          <title>My blog</title>
-        </Head>
         <h1 className='mb-8 text-3xl font-bold'>My Blog</h1>
         {posts.map((post, idx) => (
           <PostCard key={idx} {...post} />
