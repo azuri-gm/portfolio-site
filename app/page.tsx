@@ -1,46 +1,23 @@
-import { allPosts, Post } from 'contentlayer/generated'
-import { compareDesc, format, parseISO } from 'date-fns'
-import { Inter } from 'next/font/google'
-import Link from 'next/link'
+import { getAllPosts } from 'lib/posts'
 
-const inter = Inter({ subsets: ['latin'] })
-
-async function getAllPosts() {
-  const posts = await allPosts.sort((a, b) => {
-    return compareDesc(new Date(a.date), new Date(b.date))
-  })
-  return posts
-}
-
-function PostCard(post: Post) {
-  return (
-    <div className='mb-6'>
-      <time dateTime={post.date} className='block text-sm text-slate-600'>
-        {format(parseISO(post.date), 'LLLL d, yyyy')}
-      </time>
-      <h2 className='flex flex-col text-lg'>
-        <Link
-          className='text-blue-700 hover:text-blue-900'
-          href={`/blog/${post._id}`}
-        >
-          {post.title}
-        </Link>
-        {post.excerpt}
-      </h2>
-    </div>
-  )
-}
+import { LatestPosts } from '@/components/LatestPosts'
+import { PageWrapper } from '@/components/PageWrapper'
 
 export default async function Home() {
   const posts = await getAllPosts()
   return (
-    <div className={inter.className}>
-      <div className='mx-auto max-w-2xl py-16 text-center'>
-        <h1 className='mb-8 text-3xl font-bold'>My Blog</h1>
-        {posts.map((post, idx) => (
-          <PostCard key={idx} {...post} />
-        ))}
+    <PageWrapper>
+      <div className='text-center pt-4'>
+        <h1 className='text-custom-green sm:text-6xl text-5xl text-shadow-custom'>
+          I&apos;m Eduardo, a software engineer.
+        </h1>
+        <h3 className='mt-6 text-2xl'>
+          I specialize in creating web applications, tech lover with a passion
+          for everything front end and coffee.
+        </h3>
       </div>
-    </div>
+
+      <LatestPosts posts={posts} />
+    </PageWrapper>
   )
 }
