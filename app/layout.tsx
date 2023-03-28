@@ -3,7 +3,6 @@ import '../globals.css'
 import { Nunito } from 'next/font/google'
 import { ReactElement } from 'react'
 
-import { Footer } from '@/components/Footer'
 import { Navbar } from '@/components/Navbar'
 
 const nunito = Nunito({ weight: '400', subsets: ['latin-ext', 'latin'] })
@@ -28,7 +27,6 @@ export default function RootLayout({ children }: Prop): ReactElement {
               {children}
             </div>
           </div>
-          <Footer />
         </div>
       </body>
     </html>

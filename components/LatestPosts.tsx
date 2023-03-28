@@ -14,9 +14,13 @@ export const LatestPosts = ({ posts }: { posts: Post[] }) => {
       </div>
       <div className='mt-4'>
         {latestPosts.map((post, idx) => (
-          <div key={idx}>
-            <Link href={`/blog/${post._id}`}>{post.title}</Link>
-            <time>{new Date(post.date).toLocaleDateString()}</time>
+          <div key={idx} className='flex flex-col mb-4 gap-2'>
+            <Link href={`/blog/${post._id}`} className='font-medium'>
+              {post.title}
+            </Link>
+            <time className='text-shade-blue text-xs'>
+              {new Date(post.date).toLocaleDateString()}
+            </time>
           </div>
         ))}
       </div>
