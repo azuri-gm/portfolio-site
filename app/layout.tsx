@@ -23,7 +23,7 @@ export default function RootLayout({ children }: Prop): ReactElement {
       <body className={`${nunito.className} bg-darker-blue text-custom-grey`}>
         <div className='flex-col h-screen max-h-screen flex bg-darker-blue text-custom-grey'>
           <Navbar />
-          <div className='flex-1'>
+          <div className='flex-1 w-9/12 mx-auto'>
             <div className='container mx-auto h-full overflow-y-scroll'>
               {children}
             </div>
