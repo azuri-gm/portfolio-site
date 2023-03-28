@@ -5,10 +5,16 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { FC } from 'react'
 
-const links = [
+type NavbarItem = {
+  href: string
+  label: string
+}
+
+const links: NavbarItem[] = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/blog', label: 'Blog' },
+  { href: '/uses', label: 'Uses' },
 ]
 
 export const Navbar: FC = () => {

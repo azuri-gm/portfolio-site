@@ -38,5 +38,25 @@
     },
     "type": "Post",
     "url": "/posts/vscode-extensions"
+  },
+  {
+    "title": "Uses",
+    "date": "2023-03-28T00:00:00.000Z",
+    "excerpt": "Software and hardware I use for personal and proffesional projects",
+    "slug": "uses",
+    "body": {
+      "raw": "\n# Uses\n\nThis is a list of the equipment I use as part of my day-to-day work as a software engineer.\n\n## Computer & Hardware\n\n- Macbook Pro 16\"\n- Apple Magic Keyboard\n- Apple Magic Trackpad\n\n## Development Tools\n\n- Visual Studio Code\n- Github Copilot\n- Git\n- Postman\n\n## Productivity Tools\n\n- Notion\n- Jira\n",
+      "html": "<h1>Uses</h1>\n<p>This is a list of the equipment I use as part of my day-to-day work as a software engineer.</p>\n<h2>Computer &#x26; Hardware</h2>\n<ul>\n<li>Macbook Pro 16\"</li>\n<li>Apple Magic Keyboard</li>\n<li>Apple Magic Trackpad</li>\n</ul>\n<h2>Development Tools</h2>\n<ul>\n<li>Visual Studio Code</li>\n<li>Github Copilot</li>\n<li>Git</li>\n<li>Postman</li>\n</ul>\n<h2>Productivity Tools</h2>\n<ul>\n<li>Notion</li>\n<li>Jira</li>\n</ul>"
+    },
+    "_id": "uses.md",
+    "_raw": {
+      "sourceFilePath": "uses.md",
+      "sourceFileName": "uses.md",
+      "sourceFileDir": ".",
+      "contentType": "markdown",
+      "flattenedPath": "uses"
+    },
+    "type": "Post",
+    "url": "/posts/uses"
   }
 ]

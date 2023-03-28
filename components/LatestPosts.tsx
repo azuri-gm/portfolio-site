@@ -4,6 +4,7 @@ import Link from 'next/link'
 export const LatestPosts = ({ posts }: { posts: Post[] }) => {
   const latestPosts = posts
     .slice(0, 3)
+    .filter((post) => post._id !== 'uses.md')
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
   return (
