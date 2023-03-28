@@ -2,6 +2,7 @@ import '../globals.css'
 
 import { Nunito } from 'next/font/google'
 import { ReactElement } from 'react'
+export { reportWebVitals } from 'next-axiom'
 
 import { Navbar } from '@/components/Navbar'
 
