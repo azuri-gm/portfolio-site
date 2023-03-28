@@ -1,5 +1,6 @@
 import { allPosts } from 'contentlayer/generated'
 import { format, parseISO } from 'date-fns'
+import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -12,6 +13,18 @@ export async function generateStaticParams() {
   return allPosts.map((post) => ({
     slug: post._id,
   }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string }
+}): Promise<Metadata> {
+  const post = allPosts.find((post) => post._id === params.slug)
+  return {
+    title: `Eduardo Gaytan | ${post?.title ?? 'Blog Page'}`,
+    description: post?.excerpt ?? 'Blog posts for my site',
+  }
 }
 
 export default async function PostLayout({

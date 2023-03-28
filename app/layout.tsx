@@ -1,7 +1,7 @@
 import '../globals.css'
 
 import { Nunito } from 'next/font/google'
-import { ReactElement } from 'react'
+import { ReactElement, ReactNode } from 'react'
 export { reportWebVitals } from 'next-axiom'
 
 import { Navbar } from '@/components/Navbar'
@@ -13,18 +13,18 @@ export const metadata = {
   description: 'My personal site and blog',
 }
 
-type Prop = {
-  children: React.ReactNode
-}
-
-export default function RootLayout({ children }: Prop): ReactElement {
+export default function RootLayout({
+  children,
+}: {
+  children: ReactNode
+}): ReactElement {
   return (
     <html lang='en'>
       <body className={`${nunito.className} bg-darker-blue text-custom-grey`}>
         <div className='flex-col h-screen max-h-screen flex bg-darker-blue text-custom-grey'>
           <Navbar />
           <div className='flex-1 w-9/12 mx-auto'>
-            <div className='container mx-auto h-full overflow-y-scroll'>
+            <div className='container mx-auto h-full overflow-hidden scrollbar-hide'>
               {children}
             </div>
           </div>
