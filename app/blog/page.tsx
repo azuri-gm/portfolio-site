@@ -5,6 +5,11 @@ import Link from 'next/link'
 
 import { PageWrapper } from '@/components/PageWrapper'
 
+export const metadata = {
+  title: 'Eduardo Gaytan | Software Engineer',
+  description: 'Current posts I have written',
+}
+
 function PostCard(post: Post) {
   return (
     <div className='p-4 mb-6 rounded-lg hover:bg-background-blue'>

@@ -1,7 +1,9 @@
 import '../globals.css'
 
+import { Analytics } from '@vercel/analytics/react'
 import { Nunito } from 'next/font/google'
 import { ReactElement, ReactNode } from 'react'
+
 export { reportWebVitals } from 'next-axiom'
 
 import { Navbar } from '@/components/Navbar'
@@ -26,6 +28,7 @@ export default function RootLayout({
           <div className='flex-1 w-9/12 mx-auto'>
             <div className='container mx-auto h-full overflow-hidden scrollbar-hide'>
               {children}
+              <Analytics />
             </div>
           </div>
         </div>
