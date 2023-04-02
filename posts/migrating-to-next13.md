@@ -5,8 +5,6 @@ slug: migrating-to-next13
 date: 2023-04-02
 ---
 
-# Migrating to Next.js 13
-
 Next.js is a popular React-based framework for building server-rendered applications. With the release of Next.js 13, there are several changes and improvements that developers should be aware of. In this guide, we'll discuss the steps involved in migrating to Next.js 13.
 
 ## Step 1: Upgrade to the latest version of Next.js
