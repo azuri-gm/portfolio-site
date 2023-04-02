@@ -15,7 +15,7 @@ function PostCard(post: Post) {
     <div className='p-4 mb-6 rounded-lg hover:bg-background-blue'>
       <Link href={`/blog/${post._id}`} className='text-xl'>
         <time dateTime={post.date} className='block text-sm text-slate-600'>
-          {format(parseISO(post.date), 'LLLL d, yyyy')}
+          {format(parseISO(post.date), "MMMM d, yyyy 'at' hh:mm a'")}
         </time>
         <h2 className='flex flex-col'>
           {post.title}
@@ -28,6 +28,7 @@ function PostCard(post: Post) {
 
 export default async function Home() {
   const posts = await getAllPosts()
+
   return (
     <PageWrapper>
       <div className='mx-auto max-w-4xl py-16'>

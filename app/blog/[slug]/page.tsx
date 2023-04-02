@@ -2,7 +2,6 @@ import { allPosts } from 'contentlayer/generated'
 import { format, parseISO } from 'date-fns'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { PageWrapper } from '@/components/PageWrapper'
@@ -42,9 +41,6 @@ export default async function PostLayout({
     <div className={inter.className}>
       <PageWrapper>
         <article className=' prose mx-auto max-w-none'>
-          <div className='mb-6 text-center'>
-            <Link href='/'>Home</Link>
-          </div>
           <div className='mb-6 text-center'>
             <h1 className='mb-1 text-3xl font-bold'>{post.title}</h1>
             <time dateTime={post.date} className='text-sm text-slate-600'>

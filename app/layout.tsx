@@ -2,9 +2,7 @@ import '../globals.css'
 
 import { Analytics } from '@vercel/analytics/react'
 import { Nunito } from 'next/font/google'
-import { ReactElement, ReactNode } from 'react'
-
-export { reportWebVitals } from 'next-axiom'
+import { ReactNode } from 'react'
 
 import { Navbar } from '@/components/Navbar'
 
@@ -19,7 +17,7 @@ export default function RootLayout({
   children,
 }: {
   children: ReactNode
-}): ReactElement {
+}): ReactNode {
   return (
     <html lang='en'>
       <body className={`${nunito.className} bg-darker-blue text-custom-grey`}>

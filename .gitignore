@@ -1,5 +1,9 @@
+# directories
 node_modules
 dist
 .next
 .contentlayer
+.vercel
+
+# files
 pnpm-lock.yaml
