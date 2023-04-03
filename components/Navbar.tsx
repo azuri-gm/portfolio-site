@@ -4,22 +4,17 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { FC } from 'react'
-import { BiHomeAlt } from 'react-icons/bi'
-import { BsPerson } from 'react-icons/bs'
-import { FiTool } from 'react-icons/fi'
-import { HiOutlineDesktopComputer } from 'react-icons/hi'
 
 type NavbarItem = {
   href: string
   label: string
-  icon?: JSX.Element
 }
 
 const links: NavbarItem[] = [
-  { href: '/', label: 'Home', icon: <BiHomeAlt /> },
-  { href: '/about', label: 'About', icon: <BsPerson /> },
-  { href: '/blog', label: 'Blog', icon: <HiOutlineDesktopComputer /> },
-  { href: '/uses', label: 'Uses', icon: <FiTool /> },
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/uses', label: 'Uses' },
 ]
 
 function isActive(link: NavbarItem, path: string) {
@@ -39,7 +34,6 @@ export const Navbar: FC = () => {
           <ul className='[&_li]:ml-4 ml-12 flex'>
             {links.map((link) => (
               <li key={link.href} className='flex items-center gap-1'>
-                <span className='span'>{link.icon}</span>
                 <Link className='relative' href={link.href}>
                   {isActive(link, path) && (
                     <div>
