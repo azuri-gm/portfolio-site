@@ -4,7 +4,7 @@ import { LatestPosts } from '@/components/LatestPosts'
 import { PageWrapper } from '@/components/PageWrapper'
 
 export default async function Home() {
-  const posts = await getAllPosts()
+  const posts = getAllPosts()
   return (
     <PageWrapper>
       <div className='prose max-w-none'>

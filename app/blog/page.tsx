@@ -27,7 +27,7 @@ function PostCard(post: Post) {
 }
 
 export default async function Home() {
-  const posts = await getAllPosts()
+  const posts = getAllPosts()
 
   return (
     <PageWrapper>

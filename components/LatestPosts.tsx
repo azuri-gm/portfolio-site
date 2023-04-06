@@ -15,7 +15,7 @@ export const LatestPosts = ({ posts }: { posts: Post[] }) => {
       </div>
       <div className='mt-4'>
         {latestPosts.map((post, idx) => (
-          <div key={idx} className='flex flex-col mb-4 gap-2'>
+          <div key={`${post.title}-${idx}`} className='flex flex-col mb-4 gap-2'>
             <Link href={`/blog/${post._id}`} className='font-medium'>
               {post.title}
             </Link>
