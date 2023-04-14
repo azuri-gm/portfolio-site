@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { FC } from 'react'
+import { type FC } from 'react'
 
 type NavbarItem = {
   href: string

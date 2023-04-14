@@ -2,7 +2,7 @@ import '../globals.css'
 
 import { Analytics } from '@vercel/analytics/react'
 import { Nunito } from 'next/font/google'
-import { ReactNode } from 'react'
+import { type ReactNode } from 'react'
 
 import { Navbar } from '@/components/Navbar'
 
