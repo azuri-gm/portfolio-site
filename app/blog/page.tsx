@@ -31,7 +31,7 @@ export default async function Home() {
 
   return (
     <PageWrapper>
-      <div className='mx-auto max-w-4xl py-16'>
+      <div className='mx-auto max-w-4xl py-4'>
         <h1 className='mb-8 text-3xl font-bold text-center'>
           Posts ({allPosts.length})
         </h1>

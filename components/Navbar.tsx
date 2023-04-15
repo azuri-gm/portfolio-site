@@ -32,24 +32,27 @@ export const Navbar: FC = () => {
         </Link>
         <nav>
           <ul className='[&_li]:ml-4 ml-12 flex'>
-            {links.map((link) => (
-              <li key={link.href} className='flex items-center gap-1'>
-                <Link className='relative' href={link.href}>
-                  {isActive(link, path) && (
-                    <div>
-                      <motion.span
-                        layoutId='underline'
-                        className='absolute left-0 top-full block h-[2px] w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500'
-                      />
-                    </div>
-                  )}
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+            {links.map((link) => ListItem(link, path))}
           </ul>
         </nav>
       </div>
     </header>
+  )
+}
+function ListItem(link: NavbarItem, path: string): JSX.Element {
+  return (
+    <li key={link.href} className='flex items-center gap-1'>
+      <Link className='relative' href={link.href}>
+        {isActive(link, path) && (
+          <div>
+            <motion.span
+              layoutId='underline'
+              className='absolute left-0 top-full block h-[2px] w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500'
+            />
+          </div>
+        )}
+        {link.label}
+      </Link>
+    </li>
   )
 }
