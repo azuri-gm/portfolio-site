@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function Home() {
   const uses = allPosts.find((post) => post._id === 'uses.md')
-
+  
   if (!uses) {
     notFound()
   }

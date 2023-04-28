@@ -10,6 +10,8 @@ specifiers:
   '@typescript-eslint/parser': ^5.58.0
   '@vercel/analytics': ^0.1.11
   autoprefixer: ^10.4.14
+  class-variance-authority: ^0.5.2
+  clsx: ^1.2.1
   contentlayer: ^0.3.1
   date-fns: ^2.29.3
   eslint: 8.38.0
@@ -18,20 +20,22 @@ specifiers:
   eslint-plugin-import: ^2.27.5
   eslint-plugin-simple-import-sort: ^10.0.0
   framer-motion: ^10.12.2
+  lucide-react: ^0.171.0
   next: 13.2.1
   next-axiom: ^0.17.0
   next-contentlayer: ^0.3.1
   postcss: ^8.4.21
   prettier: ^2.8.7
-  prettier-plugin-organize-imports: ^3.2.2
   prettier-plugin-tailwindcss: ^0.2.7
   react: 18.2.0
   react-dom: 18.2.0
   rehype-pretty-code: ^0.9.4
   remark-gfm: ^3.0.1
   shiki: ^0.14.1
+  tailwind-merge: ^1.12.0
   tailwind-scrollbar-hide: ^1.1.7
   tailwindcss: ^3.3.1
+  tailwindcss-animate: ^1.0.5
   tailwindcss-textshadow: ^2.1.3
   typescript: 4.9.5
   zod: ^3.21.4
@@ -42,11 +46,14 @@ dependencies:
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
   '@vercel/analytics': 0.1.11_react@18.2.0
+  class-variance-authority: 0.5.2_typescript@4.9.5
+  clsx: 1.2.1
   contentlayer: 0.3.1
   date-fns: 2.29.3
   eslint-config-next: 13.2.1_ze6bmax3gcsfve3yrzu6npguhe
   eslint-plugin-simple-import-sort: 10.0.0_eslint@8.38.0
   framer-motion: 10.12.2_biqbaboplfbrettd7655fr4n2y
+  lucide-react: 0.171.0_react@18.2.0
   next: 13.2.1_biqbaboplfbrettd7655fr4n2y
   next-contentlayer: 0.3.1_qgtcjgzkkjtbiyvnx7d32fl5vu
   react: 18.2.0
@@ -54,7 +61,9 @@ dependencies:
   rehype-pretty-code: 0.9.4_shiki@0.14.1
   remark-gfm: 3.0.1
   shiki: 0.14.1
+  tailwind-merge: 1.12.0
   tailwind-scrollbar-hide: 1.1.7
+  tailwindcss-animate: 1.0.5_tailwindcss@3.3.1
   tailwindcss-textshadow: 2.1.3
   zod: 3.21.4
 
@@ -69,8 +78,7 @@ devDependencies:
   next-axiom: 0.17.0_next@13.2.1
   postcss: 8.4.21
   prettier: 2.8.7
-  prettier-plugin-organize-imports: 3.2.2_erhqnhond52bpeyvirmp3gjrp4
-  prettier-plugin-tailwindcss: 0.2.7_hy6c6t4j6tirrvnef42jy7yzfe
+  prettier-plugin-tailwindcss: 0.2.7_prettier@2.8.7
   tailwindcss: 3.3.1_postcss@8.4.21
   typescript: 4.9.5
 
@@ -1562,6 +1570,17 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
 
+  /class-variance-authority/0.5.2_typescript@4.9.5:
+    resolution: {integrity: sha512-j7Qqw3NPbs4IpO80gvdACWmVvHiLLo5MECacUBLnJG17CrLpWaQ7/4OaWX6P0IO1j2nvZ7AuSfBS/ImtEUZJGA==}
+    peerDependencies:
+      typescript: '>= 4.5.5 < 6'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: 4.9.5
+    dev: false
+
   /client-only/0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
 
@@ -1577,6 +1596,11 @@ packages:
       string-width: 4.2.3
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
+    dev: false
+
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
     dev: false
 
   /color-convert/1.9.3:
@@ -3215,6 +3239,14 @@ packages:
     dependencies:
       yallist: 4.0.0
 
+  /lucide-react/0.171.0_react@18.2.0:
+    resolution: {integrity: sha512-iCcpl4wfilDMeG1WtTkYTf47RMOx5KO5Kn5N8SSWq5KBxUELkHT7+p8+6wRz7GETxScA8fvjz22tFBmODnlYRg==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /markdown-extensions/1.1.1:
     resolution: {integrity: sha512-WWC0ZuMzCyDHYCasEGs4IPvLyTGftYwh6wIEOULOF0HXcqZlhwRzrK0w2VUlxWA98xnvb/jszw4ZSkJ6ADpM6Q==}
     engines: {node: '>=0.10.0'}
@@ -4283,24 +4315,7 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  /prettier-plugin-organize-imports/3.2.2_erhqnhond52bpeyvirmp3gjrp4:
-    resolution: {integrity: sha512-e97lE6odGSiHonHJMTYC0q0iLXQyw0u5z/PJpvP/3vRy6/Zi9kLBwFAbEGjDzIowpjQv8b+J04PDamoUSQbzGA==}
-    peerDependencies:
-      '@volar/vue-language-plugin-pug': ^1.0.4
-      '@volar/vue-typescript': ^1.0.4
-      prettier: '>=2.0'
-      typescript: '>=2.9'
-    peerDependenciesMeta:
-      '@volar/vue-language-plugin-pug':
-        optional: true
-      '@volar/vue-typescript':
-        optional: true
-    dependencies:
-      prettier: 2.8.7
-      typescript: 4.9.5
-    dev: true
-
-  /prettier-plugin-tailwindcss/0.2.7_hy6c6t4j6tirrvnef42jy7yzfe:
+  /prettier-plugin-tailwindcss/0.2.7_prettier@2.8.7:
     resolution: {integrity: sha512-jQopIOgjLpX+y8HeD56XZw7onupRTC0cw7eKKUimI7vhjkPF5/1ltW5LyqaPtSyc8HvEpvNZsvvsGFa2qpa59w==}
     engines: {node: '>=12.17.0'}
     peerDependencies:
@@ -4353,7 +4368,6 @@ packages:
         optional: true
     dependencies:
       prettier: 2.8.7
-      prettier-plugin-organize-imports: 3.2.2_erhqnhond52bpeyvirmp3gjrp4
     dev: true
 
   /prettier/2.8.7:
@@ -4870,8 +4884,20 @@ packages:
       tslib: 2.5.0
     dev: false
 
+  /tailwind-merge/1.12.0:
+    resolution: {integrity: sha512-Y17eDp7FtN1+JJ4OY0Bqv9OA41O+MS8c1Iyr3T6JFLnOgLg3EvcyMKZAnQ8AGyvB5Nxm3t9Xb5Mhe139m8QT/g==}
+    dev: false
+
   /tailwind-scrollbar-hide/1.1.7:
     resolution: {integrity: sha512-X324n9OtpTmOMqEgDUEA/RgLrNfBF/jwJdctaPZDzB3mppxJk7TLIDmOreEDm1Bq4R9LSPu4Epf8VSdovNU+iA==}
+    dev: false
+
+  /tailwindcss-animate/1.0.5_tailwindcss@3.3.1:
+    resolution: {integrity: sha512-UU3qrOJ4lFQABY+MVADmBm+0KW3xZyhMdRvejwtXqYOL7YjHYxmuREFAZdmVG5LPe5E9CAst846SLC4j5I3dcw==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      tailwindcss: 3.3.1_postcss@8.4.21
     dev: false
 
   /tailwindcss-textshadow/2.1.3:

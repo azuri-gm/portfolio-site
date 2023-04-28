@@ -9,7 +9,7 @@ export const LatestPosts = ({ posts }: { posts: Post[] }) => {
 
   return (
     <section className='mt-8'>
-      <div className='flex justify-between items-baseline'>
+      <div className='flex items-baseline justify-between'>
         <h2>Latest Posts</h2>
         <Link href='/blog'>All articles &gt;&gt;</Link>
       </div>
@@ -17,7 +17,7 @@ export const LatestPosts = ({ posts }: { posts: Post[] }) => {
         {latestPosts.map((post, idx) => (
           <div
             key={`${post.title}-${idx}`}
-            className='flex flex-col mb-4 gap-2'
+            className='mb-4 flex flex-col gap-2'
           >
             <Link href={`/blog/${post._id}`} className='font-medium'>
               {post.title}

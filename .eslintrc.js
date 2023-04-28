@@ -7,7 +7,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
-  plugins: ['simple-import-sort'],
+  plugins: [],
   rules: {
     '@typescript-eslint/consistent-type-imports': [
       'warn',
@@ -17,8 +17,6 @@ module.exports = {
         fixStyle: 'inline-type-imports',
       },
     ],
-    'simple-import-sort/imports': 'error',
-    'simple-import-sort/exports': 'error',
   },
   overrides: [
     {

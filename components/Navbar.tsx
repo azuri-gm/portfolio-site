@@ -31,7 +31,7 @@ export const Navbar: FC = () => {
           Eduardo Gaytan
         </Link>
         <nav>
-          <ul className='[&_li]:ml-4 ml-12 flex'>
+          <ul className='ml-12 flex [&_li]:ml-4'>
             {links.map((link) => ListItem(link, path))}
           </ul>
         </nav>
@@ -39,6 +39,7 @@ export const Navbar: FC = () => {
     </header>
   )
 }
+
 function ListItem(link: NavbarItem, path: string): JSX.Element {
   return (
     <li key={link.href} className='flex items-center gap-1'>

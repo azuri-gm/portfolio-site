@@ -8,8 +8,8 @@ export default async function Home() {
   return (
     <PageWrapper>
       <div className='prose max-w-none'>
-        <div className='text-center pt-4'>
-          <h1 className='text-custom-green sm:text-6xl text-5xl text-shadow-custom'>
+        <div className='pt-4 text-center'>
+          <h1 className='text-custom-green text-shadow-custom text-5xl sm:text-6xl'>
             I&apos;m Eduardo, a software engineer.
           </h1>
           <h3 className='mt-6 text-2xl'>

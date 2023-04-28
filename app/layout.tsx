@@ -21,10 +21,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${nunito.className} bg-darker-blue text-custom-grey`}>
-        <div className='flex-col h-screen max-h-screen flex bg-darker-blue text-custom-grey scrollbar-hide'>
+        <div className='bg-darker-blue text-custom-grey scrollbar-hide flex h-screen max-h-screen flex-col'>
           <Navbar />
-          <div className='flex-1 w-3/4 md:w-11/12 mx-auto'>
-            <div className='container mx-auto h-full overflow-hidden scrollbar-hide'>
+          <div className='mx-auto w-3/4 flex-1 md:w-11/12'>
+            <div className='scrollbar-hide container mx-auto h-full overflow-hidden'>
               {children}
               <Analytics />
             </div>
