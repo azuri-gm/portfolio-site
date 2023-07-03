@@ -1,7 +1,11 @@
 import { type Post } from 'contentlayer/generated'
 import Link from 'next/link'
 
-export const LatestPosts = ({ posts }: { posts: Post[] }) => {
+type Props = {
+  posts: Post[]
+}
+
+export const LatestPosts = ({ posts }: Props) => {
   const latestPosts = posts
     .filter((post) => post._id !== 'uses.md')
     .slice(0, 5)

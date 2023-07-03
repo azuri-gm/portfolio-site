@@ -1,5 +1,6 @@
 'use client'
 
+import { ModeToggle } from '@/components/ModeToggle'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -30,9 +31,12 @@ export const Navbar: FC = () => {
         <Link href='/' className='text-xl font-bold'>
           Eduardo Gaytan
         </Link>
-        <nav>
+        <nav className='flex gap-x-2'>
           <ul className='ml-12 flex [&_li]:ml-4'>
             {links.map((link) => ListItem(link, path))}
+          </ul>
+          <ul>
+            <ModeToggle />
           </ul>
         </nav>
       </div>
