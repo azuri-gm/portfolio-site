@@ -4,6 +4,7 @@ dist
 .next
 .contentlayer
 .vercel
+.idea
 
 # files
 pnpm-lock.yaml

@@ -3,15 +3,20 @@
  */
 module.exports = {
   extends: [
-    'prettier',
-    'eslint:recommended',
     'next/core-web-vitals',
-    'plugin:import/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
   ],
-  plugins: ['simple-import-sort'],
+  plugins: [],
   rules: {
-    'simple-import-sort/imports': 'error',
-    'simple-import-sort/exports': 'error',
+    '@typescript-eslint/consistent-type-imports': [
+      'warn',
+      {
+        prefer: 'type-imports',
+        disallowTypeAnnotations: true,
+        fixStyle: 'inline-type-imports',
+      },
+    ],
   },
   overrides: [
     {

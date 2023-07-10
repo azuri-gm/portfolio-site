@@ -1,7 +1,11 @@
-import { Post } from 'contentlayer/generated'
+import { type Post } from 'contentlayer/generated'
 import Link from 'next/link'
 
-export const LatestPosts = ({ posts }: { posts: Post[] }) => {
+type Props = {
+  posts: Post[]
+}
+
+export const LatestPosts = ({ posts }: Props) => {
   const latestPosts = posts
     .filter((post) => post._id !== 'uses.md')
     .slice(0, 5)
@@ -9,13 +13,16 @@ export const LatestPosts = ({ posts }: { posts: Post[] }) => {
 
   return (
     <section className='mt-8'>
-      <div className='flex justify-between items-baseline'>
+      <div className='flex items-baseline justify-between'>
         <h2>Latest Posts</h2>
         <Link href='/blog'>All articles &gt;&gt;</Link>
       </div>
       <div className='mt-4'>
         {latestPosts.map((post, idx) => (
-          <div key={idx} className='flex flex-col mb-4 gap-2'>
+          <div
+            key={`${post.title}-${idx}`}
+            className='mb-4 flex flex-col gap-2'
+          >
             <Link href={`/blog/${post._id}`} className='font-medium'>
               {post.title}
             </Link>

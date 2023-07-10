@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <PageWrapper>
-      <article className='prose mx-auto max-w-none'>
+      <article className='prose prose-lg mx-auto dark:prose-invert'>
         <div
           className='cl-post-body'
           dangerouslySetInnerHTML={{ __html: uses.body.html }}
