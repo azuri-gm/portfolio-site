@@ -26,13 +26,10 @@ export const Navbar: FC = () => {
   const path = usePathname().split('/')[1] || 'home'
 
   return (
-    <header className='relative z-10 w-full p-4'>
-      <div className='flex items-center justify-between py-8'>
-        <Link href='/' className='text-xl font-bold'>
-          Eduardo Gaytan
-        </Link>
+    <header className='relative z-10 flex w-full items-center justify-center p-4'>
+      <div className='flex items-center'>
         <nav className='flex gap-x-2'>
-          <ul className='ml-12 flex [&_li]:ml-4'>
+          <ul className='flex [&_li]:ml-4'>
             {links.map((link) => ListItem(link, path))}
           </ul>
           <ul>
