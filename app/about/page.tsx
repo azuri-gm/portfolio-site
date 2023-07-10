@@ -3,7 +3,7 @@ import { PageWrapper } from '@/components/PageWrapper'
 export default function Home() {
   return (
     <PageWrapper>
-      <div className='prose-xl max-w-none'>
+      <div className='prose prose-lg mx-auto max-w-none dark:prose-invert'>
         <h1 className=''>About</h1>
         <p>
           I&apos;m a software engineer at Apptegy, focused on creating web

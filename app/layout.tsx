@@ -1,4 +1,4 @@
-import '../globals.css'
+import './globals.css'
 
 import { Analytics } from '@vercel/analytics/react'
 import { Nunito } from 'next/font/google'
@@ -17,13 +17,12 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en'>
-      <body className={`${nunito.className}`}>
+      <body className={`${nunito.className} mx-auto max-w-none`}>
         <ThemeProvider attribute='class' defaultTheme='dark' enableSystem>
-          <div className='text-custom-grey bg-darker-blue scrollbar-hide flex h-screen max-h-screen flex-col'>
+          <div className='container flex h-screen max-h-screen flex-col'>
             <Navbar />
-
             <div className='mx-auto w-3/4 flex-1 md:w-11/12'>
-              <div className='scrollbar-hide container mx-auto h-full overflow-hidden'>
+              <div className='h-full overflow-hidden scrollbar-hide'>
                 {children}
                 <Analytics />
               </div>
