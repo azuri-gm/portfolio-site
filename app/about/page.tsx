@@ -4,8 +4,8 @@ export default function Home() {
   return (
     <PageWrapper>
       <div className='prose prose-lg mx-auto max-w-none dark:prose-invert'>
-        <h1 className=''>About</h1>
-        <p>
+        <h1 className='mb-8 text-center text-3xl font-bold'>About</h1>
+        <p className='container mx-auto'>
           I&apos;m a software engineer at Apptegy, focused on creating web
           applications. Over the years, I&apos;ve worked on projects ranging
           from small web applications to large enterprise systems. I love
