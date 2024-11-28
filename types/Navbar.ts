@@ -4,7 +4,7 @@ export type NavbarItem = {
 }
 
 export type ListItemProps = {
-  key: string
+  slug: string
   link: NavbarItem
   isActive: boolean
 }

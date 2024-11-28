@@ -29,7 +29,7 @@ export const Navbar: FC = () => {
         <ul className='flex gap-x-4'>
           {links.map((link) => (
             <ListItem
-              key={link.href}
+              slug={link.href}
               link={link}
               isActive={isActive(link, path)}
             />
