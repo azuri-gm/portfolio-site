@@ -8,6 +8,14 @@ import { PageWrapper } from '@/components/PageWrapper'
 
 const inter = Inter({ subsets: ['latin'] })
 
+type PostParams = {
+  params: { slug: string }
+}
+
+async function getPost(slug: string) {
+  return allPosts.find((post) => post._id === slug)
+}
+
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
     slug: post._id,
@@ -16,22 +24,16 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: {
-  params: { slug: string }
-}): Promise<Metadata> {
-  const post = allPosts.find((post) => post._id === params.slug)
+}: PostParams): Promise<Metadata> {
+  const post = await getPost(params.slug)
   return {
     title: `Eduardo Gaytan | ${post?.title ?? 'Blog Page'}`,
     description: post?.excerpt ?? 'Blog posts for my site',
   }
 }
 
-export default async function PostLayout({
-  params,
-}: {
-  params: { slug: string }
-}) {
-  const post = await allPosts.find((post) => post._id === params.slug)
+export default async function PostLayout({ params }: PostParams) {
+  const post = await getPost(params.slug)
 
   if (!post) {
     notFound()
@@ -41,12 +43,12 @@ export default async function PostLayout({
     <div className={inter.className}>
       <PageWrapper>
         <article className='prose prose-lg mx-auto dark:prose-invert'>
-          <div className='mb-6 text-center'>
+          <header className='mb-6 text-center'>
             <h1 className='mb-1 text-3xl font-bold'>{post.title}</h1>
             <time dateTime={post.date} className='text-sm'>
               {format(parseISO(post.date), 'LLLL d, yyyy')}
             </time>
-          </div>
+          </header>
           <div
             className='cl-post-body'
             dangerouslySetInnerHTML={{ __html: post.body.html }}

@@ -1,15 +1,10 @@
 'use client'
 
+import { ListItem } from '@/components/ListItem'
 import { ModeToggle } from '@/components/ModeToggle'
-import { motion } from 'framer-motion'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { type FC } from 'react'
-
-type NavbarItem = {
-  href: string
-  label: string
-}
+import { NavbarItem } from 'types/Navbar'
 
 const links: NavbarItem[] = [
   { href: '/', label: 'Home' },
@@ -19,7 +14,10 @@ const links: NavbarItem[] = [
 ]
 
 function isActive(link: NavbarItem, path: string) {
-  return link.label.toLowerCase() === path
+  if (link.href === '/') {
+    return path === 'home' || path === ''
+  }
+  return link.href.slice(1) === path
 }
 
 export const Navbar: FC = () => {
@@ -27,34 +25,18 @@ export const Navbar: FC = () => {
 
   return (
     <header className='relative z-10 flex w-full items-center justify-center p-4'>
-      <div className='flex items-center'>
-        <nav className='flex gap-x-2'>
-          <ul className='flex [&_li]:ml-4'>
-            {links.map((link) => ListItem(link, path))}
-          </ul>
-          <ul>
-            <ModeToggle />
-          </ul>
-        </nav>
-      </div>
-    </header>
-  )
-}
-
-function ListItem(link: NavbarItem, path: string): JSX.Element {
-  return (
-    <li key={link.href} className='flex items-center gap-1'>
-      <Link className='relative' href={link.href}>
-        {isActive(link, path) && (
-          <div>
-            <motion.span
-              layoutId='underline'
-              className='absolute left-0 top-full block h-[2px] w-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500'
+      <nav className='flex items-center gap-x-4'>
+        <ul className='flex gap-x-4'>
+          {links.map((link) => (
+            <ListItem
+              key={link.href}
+              link={link}
+              isActive={isActive(link, path)}
             />
-          </div>
-        )}
-        {link.label}
-      </Link>
-    </li>
+          ))}
+        </ul>
+        <ModeToggle />
+      </nav>
+    </header>
   )
 }
