@@ -6,7 +6,7 @@ export default async function sitemap() {
     lastModified: post.date,
   }))
 
-  const routes = ['', '/about', '/blog', '/uses'].map((route) => ({
+  const routes = ['/', '/about', '/blog', '/uses'].map((route) => ({
     url: `https://azuri.app${route}`,
     lastModified: new Date().toISOString().split('T')[0],
   }))

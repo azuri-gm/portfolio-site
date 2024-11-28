@@ -2,6 +2,7 @@ import './globals.css'
 
 import { Analytics } from '@vercel/analytics/react'
 import { Nunito } from 'next/font/google'
+import Head from 'next/head'
 
 import { Navbar } from '@/components/Navbar'
 import { type ReactNode } from 'react'
@@ -17,6 +18,10 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en'>
+      <Head>
+        <title>{metadata.title}</title>
+        <meta name='description' content={metadata.description} />
+      </Head>
       <body className={`${nunito.className} mx-auto max-w-none`}>
         <ThemeProvider attribute='class' defaultTheme='dark' enableSystem>
           <div className='container flex h-screen max-h-screen flex-col'>

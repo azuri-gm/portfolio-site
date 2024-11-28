@@ -1,40 +1,48 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { type RefObject, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+
+interface Position {
+  x: number
+  y: number
+}
+
+const SPRING_CONFIG = {
+  type: 'spring' as const,
+  stiffness: 150,
+  damping: 15,
+  mass: 0.1,
+}
 
 export default function MagneticWrapper({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const ref: RefObject<HTMLDivElement> = useRef(null)
-  const [position, setPosition] = useState({ x: 0, y: 0 })
+  const ref = useRef<HTMLDivElement>(null)
+  const [position, setPosition] = useState<Position>({ x: 0, y: 0 })
 
-  const mouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const element = ref.current
+    if (!element) return
+
     const { clientX, clientY } = e
-    const rect = ref.current?.getBoundingClientRect()
-    if (rect) {
-      const { width, height, left, top } = rect
-      const x = clientX - (left + width / 2)
-      const y = clientY - (top + height / 2)
-      setPosition({ x, y })
-    }
-  }
+    const { width, height, left, top } = element.getBoundingClientRect()
 
-  const mouseLeave = () => {
-    setPosition({ x: 0, y: 0 })
+    setPosition({
+      x: clientX - (left + width / 2),
+      y: clientY - (top + height / 2),
+    })
   }
-
-  const { x, y } = position
 
   return (
     <motion.div
-      onMouseMove={mouseMove}
-      onMouseLeave={mouseLeave}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setPosition({ x: 0, y: 0 })}
       ref={ref}
-      animate={{ x, y }}
-      transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
+      animate={position}
+      transition={SPRING_CONFIG}
     >
       {children}
     </motion.div>

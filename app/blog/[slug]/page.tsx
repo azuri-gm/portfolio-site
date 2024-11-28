@@ -5,33 +5,14 @@ import { Inter } from 'next/font/google'
 import { notFound } from 'next/navigation'
 
 import { PageWrapper } from '@/components/PageWrapper'
+import { type PostParams } from 'types/blog'
+import { getPost } from 'lib/posts'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export async function generateStaticParams() {
-  return allPosts.map((post) => ({
-    slug: post._id,
-  }))
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string }
-}): Promise<Metadata> {
-  const post = allPosts.find((post) => post._id === params.slug)
-  return {
-    title: `Eduardo Gaytan | ${post?.title ?? 'Blog Page'}`,
-    description: post?.excerpt ?? 'Blog posts for my site',
-  }
-}
-
-export default async function PostLayout({
-  params,
-}: {
-  params: { slug: string }
-}) {
-  const post = await allPosts.find((post) => post._id === params.slug)
+export default async function Post({ params }: Awaited<PostParams>) {
+  const { slug } = await params
+  const post = allPosts.find((post) => `${post.slug}.md` === slug)
 
   if (!post) {
     notFound()
@@ -41,12 +22,12 @@ export default async function PostLayout({
     <div className={inter.className}>
       <PageWrapper>
         <article className='prose prose-lg mx-auto dark:prose-invert'>
-          <div className='mb-6 text-center'>
+          <header className='mb-6 text-center'>
             <h1 className='mb-1 text-3xl font-bold'>{post.title}</h1>
             <time dateTime={post.date} className='text-sm'>
               {format(parseISO(post.date), 'LLLL d, yyyy')}
             </time>
-          </div>
+          </header>
           <div
             className='cl-post-body'
             dangerouslySetInnerHTML={{ __html: post.body.html }}
@@ -55,4 +36,22 @@ export default async function PostLayout({
       </PageWrapper>
     </div>
   )
+}
+
+// Generate static params for all posts
+export async function generateStaticParams() {
+  return allPosts.map((post) => ({
+    slug: post.slug,
+  }))
+}
+
+export async function generateMetadata({
+  params,
+}: Awaited<PostParams>): Promise<Metadata> {
+  const { slug } = await params
+  const post = await getPost(slug)
+  return {
+    title: `Eduardo Gaytan | ${post?.title ?? 'Blog Page'}`,
+    description: post?.excerpt ?? 'Blog posts for my site',
+  }
 }

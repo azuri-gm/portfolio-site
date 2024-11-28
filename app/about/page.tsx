@@ -1,6 +1,6 @@
 import { PageWrapper } from '@/components/PageWrapper'
 
-export default function Home() {
+export default function About() {
   return (
     <PageWrapper>
       <div className='prose prose-lg mx-auto max-w-none dark:prose-invert'>
