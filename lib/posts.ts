@@ -8,7 +8,7 @@ export function getAllPosts(): Post[] {
 }
 
 export function getPost(slug: string): Post {
-  const post = allPosts.find((post) => post.slug === slug)
+  const post = allPosts.find((post) => post.slug === slug.split('.')[0])
 
   if (!post) throw new Error('No post was found')
 

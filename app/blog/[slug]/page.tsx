@@ -5,35 +5,14 @@ import { Inter } from 'next/font/google'
 import { notFound } from 'next/navigation'
 
 import { PageWrapper } from '@/components/PageWrapper'
+import { type PostParams } from 'types/blog'
+import { getPost } from 'lib/posts'
 
 const inter = Inter({ subsets: ['latin'] })
 
-type PostParams = {
-  params: { slug: string }
-}
-
-async function getPost(slug: string) {
-  return allPosts.find((post) => post._id === slug)
-}
-
-export async function generateStaticParams() {
-  return allPosts.map((post) => ({
-    slug: post._id,
-  }))
-}
-
-export async function generateMetadata({
-  params,
-}: PostParams): Promise<Metadata> {
-  const post = await getPost(params.slug)
-  return {
-    title: `Eduardo Gaytan | ${post?.title ?? 'Blog Page'}`,
-    description: post?.excerpt ?? 'Blog posts for my site',
-  }
-}
-
-export default async function PostLayout({ params }: PostParams) {
-  const post = await getPost(params.slug)
+export default async function Post({ params }: PostParams) {
+  const { slug } = await params
+  const post = allPosts.find((post) => `${post.slug}.md` === slug)
 
   if (!post) {
     notFound()
@@ -57,4 +36,22 @@ export default async function PostLayout({ params }: PostParams) {
       </PageWrapper>
     </div>
   )
+}
+
+// Generate static params for all posts
+export async function generateStaticParams() {
+  return allPosts.map((post) => ({
+    slug: post.slug,
+  }))
+}
+
+export async function generateMetadata({
+  params,
+}: PostParams): Promise<Metadata> {
+  const { slug } = await params
+  const post = await getPost(slug)
+  return {
+    title: `Eduardo Gaytan | ${post?.title ?? 'Blog Page'}`,
+    description: post?.excerpt ?? 'Blog posts for my site',
+  }
 }

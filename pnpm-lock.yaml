@@ -39,7 +39,7 @@ importers:
         specifier: ^1.2.1
         version: 1.2.1
       contentlayer:
-        specifier: ^0.3.3
+        specifier: ^0.3.4
         version: 0.3.4(esbuild@0.18.11)
       date-fns:
         specifier: ^2.30.0
@@ -48,7 +48,7 @@ importers:
         specifier: ^10.0.0
         version: 10.0.0(eslint@8.38.0)
       framer-motion:
-        specifier: ^10.12.17
+        specifier: ^10.12.18
         version: 10.12.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       lucide-react:
         specifier: ^0.171.0
@@ -57,7 +57,7 @@ importers:
         specifier: 15.0.3
         version: 15.0.3(@opentelemetry/api@1.4.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-contentlayer:
-        specifier: ^0.3.3
+        specifier: ^0.3.4
         version: 0.3.4(contentlayer@0.3.4(esbuild@0.18.11))(esbuild@0.18.11)(next@15.0.3(@opentelemetry/api@1.4.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       next-themes:
         specifier: ^0.2.1
@@ -100,10 +100,10 @@ importers:
         specifier: ^0.5.9
         version: 0.5.9(tailwindcss@3.3.2)
       '@typescript-eslint/eslint-plugin':
-        specifier: ^5.60.1
+        specifier: ^5.61.0
         version: 5.61.0(@typescript-eslint/parser@5.61.0(eslint@8.38.0)(typescript@4.9.5))(eslint@8.38.0)(typescript@4.9.5)
       '@typescript-eslint/parser':
-        specifier: ^5.60.1
+        specifier: ^5.61.0
         version: 5.61.0(eslint@8.38.0)(typescript@4.9.5)
       autoprefixer:
         specifier: ^10.4.14
@@ -1390,9 +1390,6 @@ packages:
   camelcase-css@2.0.1:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
     engines: {node: '>= 6'}
-
-  caniuse-lite@1.0.30001511:
-    resolution: {integrity: sha512-NaWPJawcoedlghN4P7bDNeADD7K+rZaY6V8ZcME7PkEZo/nfOg+lnrUgRWiKbNxcQ4/toFKSxnS4WdbyPZnKkw==}
 
   caniuse-lite@1.0.30001684:
     resolution: {integrity: sha512-G1LRwLIQjBQoyq0ZJGqGIJUXzJ8irpbjHLpVRXDvBEScFJ9b17sgK6vlx0GAJFE21okD7zXl08rRRUfq6HdoEQ==}
@@ -4991,7 +4988,7 @@ snapshots:
   autoprefixer@10.4.14(postcss@8.4.24):
     dependencies:
       browserslist: 4.21.9
-      caniuse-lite: 1.0.30001511
+      caniuse-lite: 1.0.30001684
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -5001,7 +4998,7 @@ snapshots:
   autoprefixer@9.8.8:
     dependencies:
       browserslist: 4.21.9
-      caniuse-lite: 1.0.30001511
+      caniuse-lite: 1.0.30001684
       normalize-range: 0.1.2
       num2fraction: 1.2.2
       picocolors: 0.2.1
@@ -5041,7 +5038,7 @@ snapshots:
 
   browserslist@4.21.9:
     dependencies:
-      caniuse-lite: 1.0.30001511
+      caniuse-lite: 1.0.30001684
       electron-to-chromium: 1.4.448
       node-releases: 2.0.12
       update-browserslist-db: 1.0.11(browserslist@4.21.9)
@@ -5079,8 +5076,6 @@ snapshots:
       tslib: 2.6.0
 
   camelcase-css@2.0.1: {}
-
-  caniuse-lite@1.0.30001511: {}
 
   caniuse-lite@1.0.30001684: {}
 

@@ -1,4 +1,4 @@
-import { allPosts, type Post } from 'contentlayer/generated'
+import { type Post } from 'contentlayer/generated'
 import { format, parseISO } from 'date-fns'
 import { getAllPosts } from 'lib/posts'
 import Link from 'next/link'
@@ -38,7 +38,7 @@ export default async function BlogPage() {
         <h1 className='mb-8 text-center text-3xl font-bold'>
           Posts ({posts.length})
         </h1>
-        {posts.map((post, idx) => (
+        {posts.map((post) => (
           <PostCard key={post._id} {...post} />
         ))}
       </div>

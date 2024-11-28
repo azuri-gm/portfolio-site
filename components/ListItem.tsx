@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { type FC } from 'react'
-import { ListItemProps } from 'types/Navbar'
+import { type ListItemProps } from 'types/Navbar'
 
 export const ListItem: FC<ListItemProps> = ({ slug, link, isActive }) => {
   return (

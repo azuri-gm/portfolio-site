@@ -4,7 +4,7 @@ import { ListItem } from '@/components/ListItem'
 import { ModeToggle } from '@/components/ModeToggle'
 import { usePathname } from 'next/navigation'
 import { type FC } from 'react'
-import { NavbarItem } from 'types/Navbar'
+import { type NavbarItem } from 'types/Navbar'
 
 const links: NavbarItem[] = [
   { href: '/', label: 'Home' },
@@ -29,6 +29,7 @@ export const Navbar: FC = () => {
         <ul className='flex gap-x-4'>
           {links.map((link) => (
             <ListItem
+              key={link.href}
               slug={link.href}
               link={link}
               isActive={isActive(link, path)}
