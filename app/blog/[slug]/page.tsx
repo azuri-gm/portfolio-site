@@ -10,7 +10,7 @@ import { getPost } from 'lib/posts'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default async function Post({ params }: PostParams) {
+export default async function Post({ params }: Awaited<PostParams>) {
   const { slug } = await params
   const post = allPosts.find((post) => `${post.slug}.md` === slug)
 
