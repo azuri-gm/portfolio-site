@@ -1,9 +1,9 @@
-"use client"
+'use client'
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
+import { cn } from '@/lib/utils'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 interface NavItemProps {
   href: string
@@ -20,8 +20,8 @@ export function NavItem({ href, label, onClick, className }: NavItemProps) {
     <Link
       href={href}
       className={cn(
-        "relative px-3 py-2 transition-colors hover:text-primary",
-        isActive ? "text-primary" : "text-foreground",
+        'relative px-3 py-2 transition-colors hover:text-primary',
+        isActive ? 'text-primary' : 'text-foreground',
         className,
       )}
       onClick={onClick}
@@ -31,10 +31,9 @@ export function NavItem({ href, label, onClick, className }: NavItemProps) {
         <motion.div
           className="absolute bottom-0 left-0 right-0 h-1 bg-primary"
           layoutId="navbar-indicator"
-          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
         />
       )}
     </Link>
   )
 }
-

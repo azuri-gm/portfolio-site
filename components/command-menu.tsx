@@ -1,20 +1,20 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
-import type { DialogProps } from "@radix-ui/react-dialog"
-import { Command as CommandPrimitive } from "cmdk"
-import { Home, User, Laptop, BookOpen, Search } from "lucide-react"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
+import type { DialogProps } from '@radix-ui/react-dialog'
+import { Dialog, DialogContent } from '@/components/ui/dialog'
+import { Command as CommandPrimitive } from 'cmdk'
+import { BookOpen, Home, Laptop, Search, User } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import * as React from 'react'
 
 const navItems = [
   {
-    heading: "Navigation",
+    heading: 'Navigation',
     items: [
-      { icon: Home, label: "Home", href: "/" },
-      { icon: User, label: "About", href: "/about" },
-      { icon: Laptop, label: "Uses", href: "/uses" },
-      { icon: BookOpen, label: "Blog", href: "/blog" },
+      { icon: Home, label: 'Home', href: '/' },
+      { icon: User, label: 'About', href: '/about' },
+      { icon: Laptop, label: 'Uses', href: '/uses' },
+      { icon: BookOpen, label: 'Blog', href: '/blog' },
     ],
   },
 ]
@@ -25,14 +25,14 @@ export function CommandMenu({ ...props }: DialogProps) {
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault()
-        setOpen((open) => !open)
+        setOpen(open => !open)
       }
     }
 
-    document.addEventListener("keydown", down)
-    return () => document.removeEventListener("keydown", down)
+    document.addEventListener('keydown', down)
+    return () => document.removeEventListener('keydown', down)
   }, [])
 
   const runCommand = React.useCallback((command: () => unknown) => {
@@ -53,9 +53,9 @@ export function CommandMenu({ ...props }: DialogProps) {
           </div>
           <CommandPrimitive.List className="max-h-[300px] overflow-y-auto overflow-x-hidden">
             <CommandPrimitive.Empty>No results found.</CommandPrimitive.Empty>
-            {navItems.map((group) => (
+            {navItems.map(group => (
               <CommandPrimitive.Group key={group.heading} heading={group.heading}>
-                {group.items.map((item) => (
+                {group.items.map(item => (
                   <CommandPrimitive.Item
                     key={item.label}
                     onSelect={() => runCommand(() => router.push(item.href))}
@@ -75,4 +75,3 @@ export function CommandMenu({ ...props }: DialogProps) {
     </Dialog>
   )
 }
-

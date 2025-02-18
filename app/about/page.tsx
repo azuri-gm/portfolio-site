@@ -1,4 +1,4 @@
-import { Timeline } from "@/components/timeline"
+import { Timeline } from '@/components/timeline'
 
 export default function AboutPage() {
   return (
@@ -7,4 +7,3 @@ export default function AboutPage() {
     </div>
   )
 }
-
