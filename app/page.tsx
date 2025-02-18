@@ -1,9 +1,9 @@
-"use client"
+'use client'
 
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { TypeAnimation } from "react-type-animation"
+import { Button } from '@/components/ui/button'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import { TypeAnimation } from 'react-type-animation'
 
 export default function Home() {
   return (
@@ -16,17 +16,16 @@ export default function Home() {
       >
         <h1 className="text-4xl font-bold mb-4">Welcome to My Portfolio</h1>
         <div className="h-20 mb-8">
-          {" "}
-          {/* Fixed height container for the typewriter text */}
+          {' '}
           <TypeAnimation
             sequence={[
-              "A modern and minimal showcase of my work",
+              'A modern and minimal showcase of my work',
               2000,
-              "Bringing ideas to life through code",
+              'Bringing ideas to life through code',
               2000,
-              "Crafting digital experiences with passion",
+              'Crafting digital experiences with passion',
               2000,
-              "Innovating at the intersection of design and technology",
+              'Innovating at the intersection of design and technology',
               2000,
             ]}
             wrapper="p"
@@ -44,4 +43,3 @@ export default function Home() {
     </main>
   )
 }
-
