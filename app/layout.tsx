@@ -8,9 +8,11 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { CommandMenu } from '@/components/command-menu';
 
 export const metadata: Metadata = {
-  title: 'Modern Portfolio',
-  description: 'A modern and minimal portfolio site',
-  generator: 'v0.dev',
+  title: 'Eduardo Gaytan',
+  description: 'A look into my life and work',
+  icons: {
+    icon: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-4rLeNeknOMbSBX3pmXovv9olVfe8k6.png',
+  },
 };
 
 export default function RootLayout({
