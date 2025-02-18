@@ -1,32 +1,47 @@
-import { getAllPosts } from 'lib/posts'
+"use client"
 
-import { LatestPosts } from '@/components/LatestPosts'
-import { PageWrapper } from '@/components/PageWrapper'
-import { BalancedTitle } from '@/components/BalancedTitle'
-import Balancer from 'react-wrap-balancer'
-import MagneticWrapper from '@/components/MagneticWrapper'
+import { motion } from "framer-motion"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import { TypeAnimation } from "react-type-animation"
 
-export default async function Home() {
-  const posts = getAllPosts()
+export default function Home() {
   return (
-    <PageWrapper>
-      <div className='prose mx-auto max-w-none dark:prose-invert'>
-        <div className='pt-4 text-center'>
-          <MagneticWrapper>
-            <BalancedTitle className='text-4xl sm:text-6xl'>
-              I&apos;m Eduardo, a software engineer.
-            </BalancedTitle>
-          </MagneticWrapper>
-          <h3 className='mt-6 text-lg'>
-            <MagneticWrapper>
-              <Balancer>
-                Tech lover with a passion for everything front end and coffee.
-              </Balancer>
-            </MagneticWrapper>
-          </h3>
+    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center"
+      >
+        <h1 className="text-4xl font-bold mb-4">Welcome to My Portfolio</h1>
+        <div className="h-20 mb-8">
+          {" "}
+          {/* Fixed height container for the typewriter text */}
+          <TypeAnimation
+            sequence={[
+              "A modern and minimal showcase of my work",
+              2000,
+              "Bringing ideas to life through code",
+              2000,
+              "Crafting digital experiences with passion",
+              2000,
+              "Innovating at the intersection of design and technology",
+              2000,
+            ]}
+            wrapper="p"
+            speed={50}
+            className="text-xl"
+            repeat={Number.POSITIVE_INFINITY}
+          />
         </div>
-        <LatestPosts posts={posts} />
-      </div>
-    </PageWrapper>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button asChild variant="outline">
+            <Link href="/blog">Read Blog</Link>
+          </Button>
+        </div>
+      </motion.div>
+    </main>
   )
 }
+

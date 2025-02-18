@@ -1,35 +1,39 @@
-import './globals.css'
+import type React from 'react';
+import type { Metadata } from 'next';
+import { GeistSans } from 'geist/font/sans';
+import './globals.css';
+import { cn } from '@/lib/utils';
+import { Nav } from '@/components/nav';
+import { ThemeProvider } from '@/components/theme-provider';
+import { CommandMenu } from '@/components/command-menu';
 
-import { Analytics } from '@vercel/analytics/react'
-import { Nunito } from 'next/font/google'
+export const metadata: Metadata = {
+  title: 'Modern Portfolio',
+  description: 'A modern and minimal portfolio site',
+  generator: 'v0.dev',
+};
 
-import { Navbar } from '@/components/Navbar'
-import { type ReactNode } from 'react'
-import { ThemeProvider } from '@/components/ThemeProvider'
-
-const nunito = Nunito({ weight: '400', subsets: ['latin-ext', 'latin'] })
-
-export const metadata = {
-  title: 'Eduardo Gaytan | Software Engineer',
-  description: 'My personal site and blog',
-}
-
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang='en'>
-      <body className={`${nunito.className} mx-auto max-w-none`}>
+    <html lang='en' suppressHydrationWarning>
+      <body
+        className={cn(
+          'min-h-screen bg-background font-sans antialiased relative',
+          GeistSans.variable
+        )}
+      >
         <ThemeProvider attribute='class' defaultTheme='dark' enableSystem>
-          <div className='container flex h-screen max-h-screen flex-col'>
-            <Navbar />
-            <div className='mx-auto w-3/4 flex-1 md:w-11/12'>
-              <div className='h-full overflow-hidden scrollbar-hide'>
-                {children}
-                <Analytics />
-              </div>
-            </div>
-          </div>
+          <Nav />
+          <CommandMenu />
+          {children}
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }
+
+import './globals.css';
