@@ -193,7 +193,7 @@ export default async function Post({
             </article>
 
             <aside className="hidden lg:block w-64 shrink-0">
-              <div className="sticky top-8 p-4 border border-border rounded-lg bg-card">
+              <div className="sticky top-24 p-4 border border-border rounded-lg bg-card">
                 <TableOfContents content={postData.content} />
               </div>
             </aside>
