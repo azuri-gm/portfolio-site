@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import type React from 'react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { GeistSans } from 'geist/font/sans'
 import { CommandMenu } from '@/components/command-menu'
 import { Nav } from '@/components/nav'
 import { ThemeProvider } from '@/components/theme-provider'
 import { cn } from '@/lib/utils'
-import { SpeedInsights } from '@vercel/speed-insights/next'
-import { GeistSans } from 'geist/font/sans'
 import './globals.css'
 
 export const metadata: Metadata = {

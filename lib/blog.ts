@@ -1,10 +1,25 @@
-import fs from 'node:fs'
-import path from 'node:path'
+import fs from 'fs'
+import path from 'path'
 import matter from 'gray-matter'
 
 const postsDirectory = path.join(process.cwd(), 'app/blog/posts')
 
-export function getSortedPostsData() {
+export interface BlogPost {
+  id: string
+  title: string
+  date: string
+  description?: string
+  excerpt?: string
+  tags?: string[]
+  author?: string
+  image?: string
+  slug?: string
+  content?: string
+}
+
+
+
+export function getSortedPostsData(): BlogPost[] {
   const fileNames = fs.readdirSync(postsDirectory)
   const allPostsData = fileNames
     .filter(fileName => fileName.endsWith('.md'))
@@ -18,8 +33,14 @@ export function getSortedPostsData() {
 
       return {
         id,
-        ...(matterResult.data as { date: string, title: string }),
-      }
+        title: matterResult.data.title || 'Untitled',
+        date: matterResult.data.date || new Date().toISOString().split('T')[0],
+        description: matterResult.data.description || matterResult.data.excerpt || '',
+        tags: matterResult.data.tags || [],
+        author: matterResult.data.author || 'Anonymous',
+        image: matterResult.data.image || '',
+        slug: matterResult.data.slug || id,
+      } as BlogPost
     })
 
   return allPostsData.sort((a, b) => {
@@ -32,7 +53,7 @@ export function getSortedPostsData() {
   })
 }
 
-export async function getPostData(id: string) {
+export async function getPostData(id: string): Promise<BlogPost> {
   try {
     const fullPath = path.join(postsDirectory, `${id}.md`)
 
@@ -46,8 +67,14 @@ export async function getPostData(id: string) {
     return {
       id,
       content: matterResult.content,
-      ...(matterResult.data as { date: string, title: string }),
-    }
+      title: matterResult.data.title || 'Untitled',
+      date: matterResult.data.date || new Date().toISOString().split('T')[0],
+      description: matterResult.data.description || matterResult.data.excerpt || '',
+      tags: matterResult.data.tags || [],
+      author: matterResult.data.author || 'Anonymous',
+      image: matterResult.data.image || '',
+      slug: matterResult.data.slug || id,
+    } as BlogPost
   }
   catch (error) {
     console.error(`Error in getPostData for id ${id}:`, error)
