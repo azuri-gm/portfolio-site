@@ -4,6 +4,7 @@ import { CommandMenu } from '@/components/command-menu'
 import { Nav } from '@/components/nav'
 import { ThemeProvider } from '@/components/theme-provider'
 import { cn } from '@/lib/utils'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { GeistSans } from 'geist/font/sans'
 import './globals.css'
 
@@ -32,6 +33,7 @@ export default function RootLayout({
           <Nav />
           <CommandMenu />
           {children}
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
