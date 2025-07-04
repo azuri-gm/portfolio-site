@@ -3,6 +3,8 @@ title: 'Building a Modern Portfolio with Next.js'
 date: '2024-01-05'
 description: 'A comprehensive guide on building a modern portfolio and blog site using Next.js, Tailwind CSS, and MDX.'
 tags: ['nextjs', 'tutorial', 'portfolio', 'blog']
+author: 'Eduardo Gaytan'
+image: '/placeholder.jpg'
 ---
 
 # Building a Modern Portfolio with Next.js

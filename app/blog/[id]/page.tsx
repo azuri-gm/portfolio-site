@@ -1,22 +1,50 @@
 import type React from 'react'
-import { getPostData, getSortedPostsData } from '@/lib/blog'
 import { format } from 'date-fns'
 import { notFound } from 'next/navigation'
 import ReactMarkdown from 'react-markdown'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import remarkGfm from 'remark-gfm'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Badge } from '@/components/ui/badge'
+import { TableOfContents } from '@/components/ui/table-of-contents'
+import { calculateReadingTime, formatRelativeTime, getPostData, getSortedPostsData } from '@/lib/blog'
+
+function createHeadingId(children: React.ReactNode): string {
+  const text = typeof children === 'string' ? children : ''
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '')
+}
 
 const components = {
-  h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h1 className="text-3xl font-bold my-4" {...props} />
-  ),
-  h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2 className="text-2xl font-semibold my-3" {...props} />
-  ),
-  h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3 className="text-xl font-semibold my-2" {...props} />
-  ),
+  h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = createHeadingId(props.children)
+    return <h1 id={id} className="text-3xl font-bold my-4" {...props} />
+  },
+  h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = createHeadingId(props.children)
+    return <h2 id={id} className="text-2xl font-semibold my-3" {...props} />
+  },
+  h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = createHeadingId(props.children)
+    return <h3 id={id} className="text-xl font-semibold my-2" {...props} />
+  },
+  h4: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = createHeadingId(props.children)
+    return <h4 id={id} className="text-lg font-semibold my-2" {...props} />
+  },
+  h5: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = createHeadingId(props.children)
+    return <h5 id={id} className="text-base font-semibold my-2" {...props} />
+  },
+  h6: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = createHeadingId(props.children)
+    return <h6 id={id} className="text-sm font-semibold my-2" {...props} />
+  },
   p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p className="my-2" {...props} />
   ),
@@ -90,20 +118,88 @@ export default async function Post({
       notFound()
     }
 
+    const readingTime = calculateReadingTime(postData.content)
+    const relativeTime = formatRelativeTime(postData.date)
+
     return (
-      <article className="container mx-auto px-4 py-8 pt-24">
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold mb-4">{postData.title}</h1>
-          <time className="text-muted-foreground">
-            {format(new Date(postData.date), 'MMMM d, yyyy')}
-          </time>
-        </header>
-        <div className="prose prose-lg dark:prose-invert max-w-none">
-          <ReactMarkdown components={components} remarkPlugins={[remarkGfm]}>
-            {postData.content}
-          </ReactMarkdown>
+      <div className="min-h-screen bg-background">
+        {postData.image && (
+          <div className="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden">
+            <img
+              src={postData.image}
+              alt={postData.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/30" />
+          </div>
+        )}
+
+        <div className="container mx-auto px-4 py-8 max-w-7xl">
+          <div className="flex gap-8 lg:gap-12">
+            {/* Main Content */}
+            <article className="flex-1 max-w-4xl">
+              <div className="space-y-6">
+                {/* Tags */}
+                {postData.tags && postData.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {postData.tags.map(tag => (
+                      <Badge key={tag} variant="secondary" className="px-3 py-1">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+
+                <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+                  {postData.title}
+                </h1>
+
+                {postData.description && (
+                  <p className="text-lg text-muted-foreground leading-relaxed">
+                    {postData.description}
+                  </p>
+                )}
+
+                <div className="flex items-center gap-4 py-4 border-b border-border">
+                  <Avatar className="h-12 w-12">
+                    <AvatarImage src="/placeholder-user.jpg" alt={postData.author} />
+                    <AvatarFallback>
+                      {postData.author?.split(' ').map(n => n[0]).join('') || 'A'}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <span className="font-medium text-foreground">{postData.author}</span>
+                      <span>•</span>
+                      <time>{format(new Date(postData.date), 'MMM d, yyyy')}</time>
+                      <span>•</span>
+                      <span>{relativeTime}</span>
+                      <span>•</span>
+                      <span>
+                        {readingTime}
+                        {' '}
+                        min read
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="prose prose-lg dark:prose-invert max-w-none">
+                  <ReactMarkdown components={components} remarkPlugins={[remarkGfm]}>
+                    {postData.content}
+                  </ReactMarkdown>
+                </div>
+              </div>
+            </article>
+
+            <aside className="hidden lg:block w-64 shrink-0">
+              <div className="sticky top-8 p-4 border border-border rounded-lg bg-card">
+                <TableOfContents content={postData.content} />
+              </div>
+            </aside>
+          </div>
         </div>
-      </article>
+      </div>
     )
   }
   catch (error) {
