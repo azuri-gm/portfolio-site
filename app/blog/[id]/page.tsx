@@ -8,7 +8,8 @@ import remarkGfm from 'remark-gfm'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { TableOfContents } from '@/components/ui/table-of-contents'
-import { calculateReadingTime, formatRelativeTime, getPostData, getSortedPostsData } from '@/lib/blog'
+import { getPostData, getSortedPostsData } from '@/lib/blog'
+import { calculateReadingTime, formatRelativeTime } from '@/lib/utils'
 
 function createHeadingId(children: React.ReactNode): string {
   const text = typeof children === 'string' ? children : ''
