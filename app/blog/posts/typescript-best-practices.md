@@ -4,7 +4,7 @@ date: '2023-11-20'
 description: 'Discover essential TypeScript best practices, design patterns, and architectural decisions that will help you build maintainable and scalable applications.'
 tags: ['typescript', 'javascript', 'best-practices', 'architecture', 'development']
 author: 'Eduardo Gaytan'
-image: '/placeholder.jpg'
+image: '/typescript-best-practices.png'
 ---
 
 # TypeScript Best Practices for Large-Scale Applications

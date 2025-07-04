@@ -4,7 +4,7 @@ date: '2024-03-15'
 description: 'Master CSS Grid with this comprehensive guide covering basic concepts, advanced techniques, and real-world layout examples for modern web development.'
 tags: ['css', 'grid', 'layout', 'responsive', 'web-design']
 author: 'Eduardo Gaytan'
-image: '/placeholder.jpg'
+image: '/css-grid-mastery.png'
 ---
 
 # CSS Grid Mastery: From Basics to Advanced Layouts

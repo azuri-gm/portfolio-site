@@ -4,7 +4,7 @@ date: '2024-02-10'
 description: 'Learn the latest React performance optimization techniques including memoization, lazy loading, and profiling to make your React apps lightning fast.'
 tags: ['react', 'performance', 'optimization', 'javascript']
 author: 'Eduardo Gaytan'
-image: '/placeholder.jpg'
+image: '/react-performance-tips.png'
 ---
 
 # React Performance Optimization: Essential Tips for 2024

@@ -6,7 +6,7 @@ date: 2022-12-24
 description: In this post I'll share my top 5 VSCode extensions that help me stay productive while working daily. From automating tasks to formatting your code, these extensions will help you stay on top of your game!
 tags: ['vscode', 'productivity', 'extensions', 'development']
 author: 'Eduardo Gaytan'
-image: '/placeholder.jpg'
+image: '/top-5-vscode-extensions.png'
 ---
 
 Visual Studio Code, which is maintained by Microsoft, is one of the most **popular open source** code editors currently available. Perhaps one of the reasons for this widespread adoption is the extensive ecosystem of extensions that currently exists. While some IDEs may have the functionality that these extensions provide, the customization potential alone makes it a very attractive offering for all text editor users.
