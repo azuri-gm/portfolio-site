@@ -59,7 +59,7 @@ export function CommandMenu({ ...props }: DialogProps) {
                   <CommandPrimitive.Item
                     key={item.label}
                     onSelect={() => runCommand(() => router.push(item.href))}
-                    className="relative flex cursor-default select-none items-center rounded-sm px-2 py-2.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+                    className="relative flex cursor-default select-none items-center rounded-sm px-2 py-2.5 text-sm outline-none data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50"
                   >
                     <div className="flex items-center gap-2 flex-1">
                       <item.icon className="h-4 w-4" />
