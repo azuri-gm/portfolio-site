@@ -7,5 +7,4 @@ dist
 .idea
 
 # files
-pnpm-lock.yaml
 .DS_Store
