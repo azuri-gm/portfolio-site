@@ -5,7 +5,6 @@ dist
 .contentlayer
 .vercel
 .idea
-CLAUDE.md
 
 # files
 pnpm-lock.yaml
