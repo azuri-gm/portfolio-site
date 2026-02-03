@@ -7,7 +7,7 @@ This document provides essential context for AI assistants working with this cod
 A modern personal portfolio website for Eduardo Gaytan built with Next.js 15, featuring a blog with markdown support, dark/light theme toggle, and responsive design.
 
 **Tech Stack:**
-- **Runtime:** Node.js 22+ (see `.nvmrc`)
+- **Runtime:** Node.js 24+ (see `.nvmrc`)
 - **Framework:** Next.js 15 (App Router)
 - **Language:** TypeScript 5.9 (strict mode)
 - **Styling:** Tailwind CSS 3 with CSS variables for theming
@@ -47,14 +47,14 @@ portfolio-site/
 
 ## Prerequisites
 
-- **Node.js 22+** - Use `nvm use` to switch to the correct version (reads from `.nvmrc`)
+- **Node.js 24+** - Use `nvm use` to switch to the correct version (reads from `.nvmrc`)
 - **pnpm** - Package manager (specified in `package.json` as `pnpm@10.12.4`)
 
 ## Key Commands
 
 ```bash
 # Setup
-nvm use           # Switch to Node 22 (reads .nvmrc)
+nvm use           # Switch to Node 24 (reads .nvmrc)
 pnpm install      # Install dependencies
 
 # Development
@@ -175,7 +175,7 @@ Components are added to `components/ui/` and can be customized after installatio
 
 | File | Purpose |
 |------|---------|
-| `.nvmrc` | Node.js version (22) |
+| `.nvmrc` | Node.js version (24) |
 | `app/layout.tsx` | Root layout, theme provider, nav |
 | `app/globals.css` | CSS variables, base styles |
 | `lib/utils.ts` | `cn()` helper, utility functions |
