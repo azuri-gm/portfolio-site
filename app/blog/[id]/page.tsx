@@ -13,7 +13,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { TableOfContents } from '@/components/ui/table-of-contents'
 import { getAdjacentPosts, getPostData, getSortedPostsData } from '@/lib/blog'
-import { calculateReadingTime } from '@/lib/utils'
+import { calculateReadingTime, parseDate } from '@/lib/utils'
 
 function createHeadingId(children: React.ReactNode): string {
   const text = typeof children === 'string' ? children : ''
@@ -203,7 +203,7 @@ export default async function Post({
                       <span className="text-border">|</span>
                     </>
                   )}
-                  <time>{format(new Date(postData.date), 'MMMM d, yyyy')}</time>
+                  <time>{format(parseDate(postData.date), 'MMMM d, yyyy')}</time>
                   <span className="text-border">|</span>
                   <span>{readingTime} min read</span>
                 </div>

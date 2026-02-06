@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
-import { calculateReadingTime, cn, formatRelativeTime } from '@/lib/utils'
+import { calculateReadingTime, cn, formatRelativeTime, parseDate } from '@/lib/utils'
 
 interface BlogListProps {
   initialPosts: BlogPost[]
@@ -48,8 +48,8 @@ export default function BlogList({ initialPosts }: BlogListProps) {
     }
 
     posts = [...posts].sort((a, b) => {
-      const dateA = new Date(a.date).getTime()
-      const dateB = new Date(b.date).getTime()
+      const dateA = parseDate(a.date).getTime()
+      const dateB = parseDate(b.date).getTime()
       return sortOrder === 'newest' ? dateB - dateA : dateA - dateB
     })
 
@@ -178,7 +178,7 @@ export default function BlogList({ initialPosts }: BlogListProps) {
               <Link href={`/blog/${post.id}`} className="group block">
                 <article className="py-6">
                   <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-                    <time>{format(new Date(post.date), 'MMM d, yyyy')}</time>
+                    <time>{format(parseDate(post.date), 'MMM d, yyyy')}</time>
                     <span className="text-border">{'/'}</span>
                     <span className="flex items-center gap-1">
                       <Clock className="h-3 w-3" />
