@@ -1,6 +1,6 @@
 import type React from 'react'
 import { MDXProvider } from '@mdx-js/react'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 
 const components = {
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />,

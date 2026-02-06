@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import type React from 'react'
+import { Geist } from 'next/font/google'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import { GeistSans } from 'geist/font/sans'
 import { CommandMenu } from '@/components/command-menu'
 import { Nav } from '@/components/nav'
 import { ThemeProvider } from '@/components/theme-provider'
 import { cn } from '@/lib/utils'
 import './globals.css'
+
+const geistSans = Geist({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Eduardo Gaytan',
@@ -26,7 +28,7 @@ export default function RootLayout({
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased relative',
-          GeistSans.variable,
+          geistSans.variable,
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>

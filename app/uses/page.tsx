@@ -1,7 +1,7 @@
 'use client'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { BookText, Code, GitBranch, Keyboard, Laptop, Mouse, Send, Trello } from 'lucide-react'
 
 const categories = [

@@ -2,7 +2,7 @@
 
 import type { BlogPost } from '@/lib/blog'
 import { format } from 'date-fns'
-import { motion } from 'framer-motion'
+import { motion } from 'motion/react'
 import { Calendar, Clock } from 'lucide-react'
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
