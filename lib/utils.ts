@@ -6,9 +6,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// Parse a date string as UTC noon to avoid timezone-related day shifts.
-// "2024-03-15" -> March 15 2024 12:00 UTC (safe in all timezones)
-export function parseDate(date: string): Date {
+// Parse a date value as UTC noon to avoid timezone-related day shifts.
+// Handles both string ("2024-03-15") and Date objects (from gray-matter).
+export function parseDate(date: string | Date): Date {
+  if (date instanceof Date) {
+    return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 12, 0, 0))
+  }
   const [year, month, day] = date.split('-').map(Number)
   return new Date(Date.UTC(year, month - 1, day, 12, 0, 0))
 }
@@ -22,7 +25,7 @@ export function calculateReadingTime(content: string): number {
 }
 
 // Format relative time (e.g., "3 months ago")
-export function formatRelativeTime(date: string): string {
+export function formatRelativeTime(date: string | Date): string {
   const now = new Date()
   const postDate = parseDate(date)
   const diffInMs = now.getTime() - postDate.getTime()
