@@ -2,6 +2,9 @@
 
 import { motion } from 'motion/react'
 import Image from 'next/image'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 
 interface TimelineItem {
   title: string
@@ -58,68 +61,59 @@ const experiences: TimelineItem[] = [
 
 export function Timeline() {
   return (
-    <div className="relative container mx-auto px-4 py-16">
-      <motion.h1
-        className="text-5xl font-bold mb-16"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        WORK EXPERIENCE
-      </motion.h1>
-
-      <div className="relative">
-        {/* Timeline line */}
-        <div className="absolute left-0 md:left-[7px] top-0 bottom-0 w-0.5 bg-primary/30" />
-
-        {/* Timeline items */}
-        <div className="space-y-12">
-          {experiences.map((experience, index) => (
-            <motion.div
-              key={index}
-              className="relative pl-6 md:pl-12"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-            >
-              {/* Timeline dot */}
-              <div className="absolute left-0 top-2 w-3.5 h-3.5 rounded-full border-4 border-primary bg-background" />
-
-              <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-                <div className="flex items-center gap-4">
-                  <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-accent/10">
-                    <Image
-                      src={experience.logo || '/placeholder.svg'}
-                      alt={`${experience.company} logo`}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold">{experience.title}</h3>
-                    <p className="text-muted-foreground">
-                      {experience.company}
-                      {' '}
-                      |
-                      {experience.type}
-                    </p>
+    <div className="space-y-4">
+      {experiences.map((experience, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: index * 0.08 }}
+        >
+          <Card className="border-l-2 border-l-primary/20 hover:border-l-primary/50 transition-colors">
+            <CardHeader className="pb-3">
+              <div className="flex items-start gap-4">
+                <div className="relative w-10 h-10 rounded-md overflow-hidden bg-muted flex-shrink-0">
+                  <Image
+                    src={experience.logo || '/placeholder.svg'}
+                    alt={`${experience.company} logo`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-start justify-between gap-2">
+                    <div>
+                      <h3 className="text-sm font-semibold leading-snug">{experience.title}</h3>
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        {experience.company}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <Badge variant="outline" className="text-[10px] px-2 py-0 h-5 font-normal hidden sm:inline-flex">
+                        {experience.type}
+                      </Badge>
+                      <span className="text-[11px] text-muted-foreground whitespace-nowrap">
+                        {experience.date}
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <p className="text-sm text-muted-foreground md:ml-auto">{experience.date}</p>
               </div>
-
-              <ul className="space-y-2 text-sm text-muted-foreground">
+            </CardHeader>
+            <CardContent className="pt-0">
+              <Separator className="mb-3" />
+              <ul className="space-y-2">
                 {experience.responsibilities.map((item, i) => (
-                  <li key={i} className="flex items-start">
-                    <span className="mr-2">›</span>
+                  <li key={i} className="flex items-start text-xs text-muted-foreground leading-relaxed">
+                    <span className="mr-2 text-primary/40 mt-px flex-shrink-0">{'--'}</span>
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+      ))}
     </div>
   )
 }
