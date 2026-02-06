@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { List } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface Heading {
@@ -17,6 +18,7 @@ interface TableOfContentsProps {
 export function TableOfContents({ content, className }: TableOfContentsProps) {
   const [headings, setHeadings] = useState<Heading[]>([])
   const [activeId, setActiveId] = useState<string>('')
+  const [readProgress, setReadProgress] = useState(0)
 
   useEffect(() => {
     const headingRegex = /^(#{1,6})\s(.+)$/gm
@@ -49,7 +51,7 @@ export function TableOfContents({ content, className }: TableOfContentsProps) {
         })
       },
       {
-        rootMargin: '-100px 0px -66%',
+        rootMargin: '-80px 0px -66%',
         threshold: 0,
       },
     )
@@ -63,6 +65,20 @@ export function TableOfContents({ content, className }: TableOfContentsProps) {
 
     return () => observer.disconnect()
   }, [headings])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      if (docHeight > 0) {
+        setReadProgress(Math.min((scrollTop / docHeight) * 100, 100))
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const scrollToHeading = (id: string) => {
     const element = document.getElementById(id)
@@ -78,31 +94,46 @@ export function TableOfContents({ content, className }: TableOfContentsProps) {
     return null
   }
 
+  const minLevel = Math.min(...headings.map(h => h.level))
+
   return (
-    <nav className={cn('space-y-2', className)}>
-      <h4 className="text-sm font-semibold text-foreground mb-4">On this page</h4>
-      <ul className="space-y-2">
+    <nav className={cn('space-y-3', className)}>
+      <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground uppercase tracking-wider">
+        <List className="h-3.5 w-3.5" />
+        On this page
+      </div>
+
+      {/* Reading progress */}
+      <div className="h-0.5 w-full bg-muted rounded-full overflow-hidden">
+        <div
+          className="h-full bg-foreground/20 transition-all duration-150 ease-out rounded-full"
+          style={{ width: `${readProgress}%` }}
+        />
+      </div>
+
+      <ul className="space-y-0.5">
         {headings.map(heading => (
-          <li key={heading.id} className="relative">
+          <li key={heading.id}>
             <button
               onClick={() => scrollToHeading(heading.id)}
               className={cn(
-                'block w-full text-left text-sm transition-colors hover:text-foreground relative',
-                heading.level === 1 && 'font-medium',
-                heading.level === 2 && 'pl-4',
-                heading.level === 3 && 'pl-8',
-                heading.level === 4 && 'pl-12',
-                heading.level === 5 && 'pl-16',
-                heading.level === 6 && 'pl-20',
+                'relative block w-full text-left text-[13px] py-1.5 transition-colors duration-200 rounded-sm',
+                heading.level > minLevel && `pl-${(heading.level - minLevel) * 3}`,
                 activeId === heading.id
-                  ? 'text-primary font-medium'
-                  : 'text-muted-foreground',
+                  ? 'text-foreground font-medium'
+                  : 'text-muted-foreground hover:text-foreground/80',
               )}
+              style={{
+                paddingLeft: heading.level > minLevel
+                  ? `${(heading.level - minLevel) * 0.75}rem`
+                  : undefined,
+              }}
             >
-              {activeId === heading.id && (
-                <span className="absolute left-0 top-0 h-full w-0.5 bg-primary" />
-              )}
-              {heading.text}
+              <span className={cn(
+                'absolute left-0 top-1/2 -translate-y-1/2 w-0.5 rounded-full bg-foreground transition-all duration-200',
+                activeId === heading.id ? 'h-4 opacity-100' : 'h-0 opacity-0',
+              )} />
+              <span className="line-clamp-2">{heading.text}</span>
             </button>
           </li>
         ))}

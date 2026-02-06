@@ -92,3 +92,24 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom prose styling for blog posts */
+.prose-custom {
+  @apply text-foreground/90 leading-7;
+}
+
+.prose-custom > *:first-child {
+  @apply mt-0;
+}
+
+.prose-custom > *:last-child {
+  @apply mb-0;
+}
+
+.prose-custom strong {
+  @apply font-semibold text-foreground;
+}
+
+.prose-custom em {
+  @apply italic;
+}
