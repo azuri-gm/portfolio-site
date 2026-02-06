@@ -4,17 +4,18 @@ This document provides essential context for AI assistants working with this cod
 
 ## Project Overview
 
-A modern personal portfolio website for Eduardo Gaytan built with Next.js 15, featuring a blog with markdown support, dark/light theme toggle, and responsive design.
+A modern personal portfolio website for Eduardo Gaytan built with Next.js 16, featuring a blog with markdown support, dark/light theme toggle, and responsive design.
 
 **Tech Stack:**
 - **Runtime:** Node.js 24+ (see `.nvmrc`)
-- **Framework:** Next.js 15 (App Router)
+- **Framework:** Next.js 16 (App Router)
 - **Language:** TypeScript 5.9 (strict mode)
 - **Styling:** Tailwind CSS 3 with CSS variables for theming
 - **UI Components:** shadcn/ui (Radix UI primitives)
 - **Package Manager:** pnpm
-- **Animations:** Framer Motion 12
+- **Animations:** Motion (formerly Framer Motion) 12
 - **Markdown:** gray-matter + react-markdown + remark-gfm
+- **React:** React 19.2
 
 ## Directory Structure
 
@@ -138,9 +139,11 @@ The project uses `@/` path aliases configured in `tsconfig.json`:
 
 ### Animation Patterns
 
-- Use Framer Motion for animations
+- Use Motion (formerly Framer Motion) for animations, imported from `motion/react`
 - Common pattern:
   ```tsx
+  import { motion } from 'motion/react'
+
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -195,7 +198,7 @@ Components are added to `components/ui/` and can be customized after installatio
 
 - `cmdk` - Command menu component
 - `date-fns` - Date formatting
-- `geist` - Font family
+- Geist font via `next/font/google`
 - `lucide-react` - Icon library
 - `react-type-animation` - Typing animation on home page
 - `react-syntax-highlighter` - Code highlighting in blog posts
