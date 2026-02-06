@@ -1,7 +1,8 @@
 'use client'
 
 import type { DialogProps } from '@radix-ui/react-dialog'
-import { Dialog, DialogContent } from '@/components/ui/dialog'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
 import { Command as CommandPrimitive } from 'cmdk'
 import { BookOpen, Home, Laptop, Search, User } from 'lucide-react'
 import { useRouter } from 'next/navigation'
@@ -42,7 +43,10 @@ export function CommandMenu({ ...props }: DialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen} {...props}>
-      <DialogContent className="overflow-hidden p-0">
+      <DialogContent className="overflow-hidden p-0" aria-describedby={undefined}>
+        <VisuallyHidden>
+          <DialogTitle>Command Menu</DialogTitle>
+        </VisuallyHidden>
         <CommandPrimitive className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
           <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
             <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
