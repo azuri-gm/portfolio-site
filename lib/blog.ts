@@ -53,6 +53,15 @@ export function getSortedPostsData(): BlogPost[] {
   })
 }
 
+export function getAdjacentPosts(id: string): { prev: BlogPost | null, next: BlogPost | null } {
+  const posts = getSortedPostsData()
+  const index = posts.findIndex(post => post.id === id)
+  return {
+    prev: index < posts.length - 1 ? posts[index + 1] : null,
+    next: index > 0 ? posts[index - 1] : null,
+  }
+}
+
 export async function getPostData(id: string): Promise<BlogPost> {
   try {
     const fullPath = path.join(postsDirectory, `${id}.md`)

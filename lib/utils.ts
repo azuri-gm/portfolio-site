@@ -6,6 +6,16 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+// Parse a date value as UTC noon to avoid timezone-related day shifts.
+// Handles both string ("2024-03-15") and Date objects (from gray-matter).
+export function parseDate(date: string | Date): Date {
+  if (date instanceof Date) {
+    return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), 12, 0, 0))
+  }
+  const [year, month, day] = date.split('-').map(Number)
+  return new Date(Date.UTC(year, month - 1, day, 12, 0, 0))
+}
+
 // Calculate reading time based on average reading speed of 200 words per minute
 export function calculateReadingTime(content: string): number {
   const wordsPerMinute = 200
@@ -15,9 +25,9 @@ export function calculateReadingTime(content: string): number {
 }
 
 // Format relative time (e.g., "3 months ago")
-export function formatRelativeTime(date: string): string {
+export function formatRelativeTime(date: string | Date): string {
   const now = new Date()
-  const postDate = new Date(date)
+  const postDate = parseDate(date)
   const diffInMs = now.getTime() - postDate.getTime()
   const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24))
   const diffInMonths = Math.floor(diffInDays / 30)
