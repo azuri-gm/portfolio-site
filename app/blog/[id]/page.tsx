@@ -222,44 +222,44 @@ export default async function Post({
               {(prev || next) && (
                 <>
                   <Separator className="mt-12 mb-8" />
-                  <nav className="flex items-stretch gap-4" aria-label="Post navigation">
+                  <nav className="flex flex-col sm:flex-row items-stretch gap-3 sm:gap-4 min-w-0" aria-label="Post navigation">
                     {prev ? (
-                      <Link href={`/blog/${prev.id}`} className="flex-1 group">
+                      <Link href={`/blog/${prev.id}`} className="flex-1 min-w-0 group">
                         <Button
                           variant="outline"
-                          className="w-full h-auto py-4 px-5 flex flex-col items-start gap-1 text-left"
+                          className="w-full h-auto py-3 px-4 sm:py-4 sm:px-5 flex flex-col items-start gap-1 text-left"
                           asChild
                         >
-                          <span>
+                          <span className="min-w-0 max-w-full">
                             <span className="flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-foreground transition-colors">
-                              <ArrowLeft className="h-3 w-3" />
+                              <ArrowLeft className="h-3 w-3 shrink-0" />
                               Previous
                             </span>
-                            <span className="text-sm font-medium line-clamp-1">{prev.title}</span>
+                            <span className="text-sm font-medium truncate max-w-full block">{prev.title}</span>
                           </span>
                         </Button>
                       </Link>
                     ) : (
-                      <div className="flex-1" />
+                      <div className="hidden sm:block flex-1" />
                     )}
                     {next ? (
-                      <Link href={`/blog/${next.id}`} className="flex-1 group">
+                      <Link href={`/blog/${next.id}`} className="flex-1 min-w-0 group">
                         <Button
                           variant="outline"
-                          className="w-full h-auto py-4 px-5 flex flex-col items-end gap-1 text-right"
+                          className="w-full h-auto py-3 px-4 sm:py-4 sm:px-5 flex flex-col items-end gap-1 text-right"
                           asChild
                         >
-                          <span>
+                          <span className="min-w-0 max-w-full">
                             <span className="flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-foreground transition-colors">
                               Next
-                              <ArrowRight className="h-3 w-3" />
+                              <ArrowRight className="h-3 w-3 shrink-0" />
                             </span>
-                            <span className="text-sm font-medium line-clamp-1">{next.title}</span>
+                            <span className="text-sm font-medium truncate max-w-full block">{next.title}</span>
                           </span>
                         </Button>
                       </Link>
                     ) : (
-                      <div className="flex-1" />
+                      <div className="hidden sm:block flex-1" />
                     )}
                   </nav>
                 </>
