@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { cn } from '@/lib/utils'
 import { Menu } from 'lucide-react'
+import { motion } from 'motion/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import * as React from 'react'
@@ -56,16 +57,24 @@ export function MobileNav() {
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className={cn(
-                  'flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                  'relative flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors',
                   active
-                    ? 'bg-accent text-foreground'
+                    ? 'text-foreground'
                     : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground/80',
                 )}
               >
                 {active && (
-                  <span className="h-1.5 w-1.5 rounded-full bg-foreground shrink-0" />
+                  <motion.span
+                    layoutId="mobile-nav-highlight"
+                    className="absolute inset-0 rounded-md bg-accent"
+                    transition={{
+                      type: 'spring',
+                      stiffness: 380,
+                      damping: 30,
+                    }}
+                  />
                 )}
-                {item.label}
+                <span className="relative z-10">{item.label}</span>
               </Link>
             )
           })}

@@ -2,6 +2,7 @@
 
 import { cn } from '@/lib/utils'
 import { Search } from 'lucide-react'
+import { motion } from 'motion/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { CommandMenu } from './command-menu'
@@ -55,7 +56,7 @@ export function Nav() {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      'relative px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
+                      'relative px-3 py-2 text-sm font-medium transition-colors',
                       active
                         ? 'text-foreground'
                         : 'text-muted-foreground hover:text-foreground/80',
@@ -63,7 +64,15 @@ export function Nav() {
                   >
                     {item.label}
                     {active && (
-                      <span className="absolute bottom-[-1.2rem] left-1/2 -translate-x-1/2 h-[2px] w-4/5 bg-foreground rounded-full" />
+                      <motion.span
+                        layoutId="nav-underline"
+                        className="absolute bottom-0 left-2 right-2 h-[2px] bg-foreground rounded-full"
+                        transition={{
+                          type: 'spring',
+                          stiffness: 380,
+                          damping: 30,
+                        }}
+                      />
                     )}
                   </Link>
                 )
