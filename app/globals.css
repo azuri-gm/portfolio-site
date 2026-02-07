@@ -126,3 +126,15 @@ body {
 .prose-custom em {
   @apply italic;
 }
+
+.prose-custom pre {
+  @apply overflow-x-auto max-w-full;
+}
+
+.prose-custom img {
+  @apply max-w-full h-auto;
+}
+
+.prose-custom table {
+  @apply w-full overflow-x-auto block;
+}

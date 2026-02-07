@@ -92,7 +92,7 @@ const components = {
     const codeString = String(children).replace(/\n$/, '')
     return !inline && match
       ? (
-          <div className="group/code relative my-6">
+          <div className="group/code relative my-6 max-w-full overflow-hidden">
             <div className="flex items-center justify-between rounded-t-lg bg-[#1d1f21] px-4 py-2 border border-b-0 border-[#2d2f31]">
               <span className="text-xs text-neutral-400 font-mono">{match[1]}</span>
               <CopyButton text={codeString} />
@@ -109,6 +109,8 @@ const components = {
                 borderBottomRightRadius: '0.5rem',
                 border: '1px solid #2d2f31',
                 borderTop: 'none',
+                overflowX: 'auto',
+                maxWidth: '100%',
               }}
               {...props}
             >
@@ -118,7 +120,7 @@ const components = {
         )
       : (
           <code
-            className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono text-foreground"
+            className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono text-foreground break-words"
             {...props}
           >
             {children}
@@ -156,8 +158,8 @@ export default async function Post({
     const { prev, next } = getAdjacentPosts(resolvedParams.id)
 
     return (
-      <div className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 py-8 pt-20 max-w-7xl">
+      <div className="min-h-screen bg-background overflow-x-hidden">
+        <div className="container mx-auto px-4 py-8 pt-20 max-w-7xl overflow-x-hidden">
           {/* Back link */}
           <div className="max-w-2xl mx-auto lg:mx-0 lg:max-w-none">
             <Link
@@ -169,9 +171,9 @@ export default async function Post({
             </Link>
           </div>
 
-          <div className="flex gap-12">
+          <div className="flex gap-12 min-w-0">
             {/* Main content */}
-            <article className="flex-1 max-w-2xl mx-auto lg:mx-0">
+            <article className="flex-1 min-w-0 max-w-2xl mx-auto lg:mx-0">
               {/* Header */}
               <header className="mb-8">
                 {postData.tags && postData.tags.length > 0 && (
@@ -210,7 +212,7 @@ export default async function Post({
               </header>
 
               {/* Prose content */}
-              <div className="prose-custom">
+              <div className="prose-custom min-w-0 max-w-full overflow-x-hidden">
                 <ReactMarkdown components={components} remarkPlugins={[remarkGfm]}>
                   {postData.content}
                 </ReactMarkdown>
