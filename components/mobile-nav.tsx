@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { cn } from '@/lib/utils'
 import { Menu } from 'lucide-react'
+import { motion } from 'motion/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import * as React from 'react'
@@ -19,6 +20,11 @@ const navItems = [
 export function MobileNav() {
   const [open, setOpen] = React.useState(false)
   const pathname = usePathname()
+
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/'
+    return pathname === href || pathname.startsWith(`${href}/`)
+  }
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -42,22 +48,36 @@ export function MobileNav() {
           </Avatar>
           <span className="font-medium">Eduardo Gaytan</span>
         </div>
-        <nav className="flex flex-col gap-4 mt-4">
-          {navItems.map(item => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className={cn(
-                'text-sm font-medium transition-colors hover:text-primary',
-                pathname === item.href
-                  ? 'text-foreground'
-                  : 'text-muted-foreground',
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
+        <nav className="flex flex-col gap-1 mt-4">
+          {navItems.map(item => {
+            const active = isActive(item.href)
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  'relative flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                  active
+                    ? 'text-foreground'
+                    : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground/80',
+                )}
+              >
+                {active && (
+                  <motion.span
+                    layoutId="mobile-nav-highlight"
+                    className="absolute inset-0 rounded-md bg-accent"
+                    transition={{
+                      type: 'spring',
+                      stiffness: 380,
+                      damping: 30,
+                    }}
+                  />
+                )}
+                <span className="relative z-10">{item.label}</span>
+              </Link>
+            )
+          })}
         </nav>
       </SheetContent>
     </Sheet>

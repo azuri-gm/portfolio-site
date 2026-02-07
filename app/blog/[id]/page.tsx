@@ -92,7 +92,7 @@ const components = {
     const codeString = String(children).replace(/\n$/, '')
     return !inline && match
       ? (
-          <div className="group/code relative my-6">
+          <div className="group/code relative my-6 max-w-full overflow-hidden">
             <div className="flex items-center justify-between rounded-t-lg bg-[#1d1f21] px-4 py-2 border border-b-0 border-[#2d2f31]">
               <span className="text-xs text-neutral-400 font-mono">{match[1]}</span>
               <CopyButton text={codeString} />
@@ -109,6 +109,8 @@ const components = {
                 borderBottomRightRadius: '0.5rem',
                 border: '1px solid #2d2f31',
                 borderTop: 'none',
+                overflowX: 'auto',
+                maxWidth: '100%',
               }}
               {...props}
             >
@@ -118,7 +120,7 @@ const components = {
         )
       : (
           <code
-            className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono text-foreground"
+            className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono text-foreground break-words"
             {...props}
           >
             {children}
@@ -156,8 +158,8 @@ export default async function Post({
     const { prev, next } = getAdjacentPosts(resolvedParams.id)
 
     return (
-      <div className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 py-8 pt-20 max-w-7xl">
+      <div className="min-h-screen bg-background overflow-x-hidden">
+        <div className="container mx-auto px-4 py-8 pt-20 max-w-7xl overflow-x-hidden">
           {/* Back link */}
           <div className="max-w-2xl mx-auto lg:mx-0 lg:max-w-none">
             <Link
@@ -169,9 +171,9 @@ export default async function Post({
             </Link>
           </div>
 
-          <div className="flex gap-12">
+          <div className="flex gap-12 min-w-0">
             {/* Main content */}
-            <article className="flex-1 max-w-2xl mx-auto lg:mx-0">
+            <article className="flex-1 min-w-0 max-w-2xl mx-auto lg:mx-0">
               {/* Header */}
               <header className="mb-8">
                 {postData.tags && postData.tags.length > 0 && (
@@ -210,7 +212,7 @@ export default async function Post({
               </header>
 
               {/* Prose content */}
-              <div className="prose-custom">
+              <div className="prose-custom min-w-0 max-w-full overflow-x-hidden">
                 <ReactMarkdown components={components} remarkPlugins={[remarkGfm]}>
                   {postData.content}
                 </ReactMarkdown>
@@ -220,44 +222,44 @@ export default async function Post({
               {(prev || next) && (
                 <>
                   <Separator className="mt-12 mb-8" />
-                  <nav className="flex items-stretch gap-4" aria-label="Post navigation">
+                  <nav className="flex flex-col sm:flex-row items-stretch gap-3 sm:gap-4 min-w-0" aria-label="Post navigation">
                     {prev ? (
-                      <Link href={`/blog/${prev.id}`} className="flex-1 group">
+                      <Link href={`/blog/${prev.id}`} className="flex-1 min-w-0 group">
                         <Button
                           variant="outline"
-                          className="w-full h-auto py-4 px-5 flex flex-col items-start gap-1 text-left"
+                          className="w-full h-auto py-3 px-4 sm:py-4 sm:px-5 flex flex-col items-start gap-1 text-left"
                           asChild
                         >
-                          <span>
+                          <span className="min-w-0 max-w-full">
                             <span className="flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-foreground transition-colors">
-                              <ArrowLeft className="h-3 w-3" />
+                              <ArrowLeft className="h-3 w-3 shrink-0" />
                               Previous
                             </span>
-                            <span className="text-sm font-medium line-clamp-1">{prev.title}</span>
+                            <span className="text-sm font-medium truncate max-w-full block">{prev.title}</span>
                           </span>
                         </Button>
                       </Link>
                     ) : (
-                      <div className="flex-1" />
+                      <div className="hidden sm:block flex-1" />
                     )}
                     {next ? (
-                      <Link href={`/blog/${next.id}`} className="flex-1 group">
+                      <Link href={`/blog/${next.id}`} className="flex-1 min-w-0 group">
                         <Button
                           variant="outline"
-                          className="w-full h-auto py-4 px-5 flex flex-col items-end gap-1 text-right"
+                          className="w-full h-auto py-3 px-4 sm:py-4 sm:px-5 flex flex-col items-end gap-1 text-right"
                           asChild
                         >
-                          <span>
+                          <span className="min-w-0 max-w-full">
                             <span className="flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-foreground transition-colors">
                               Next
-                              <ArrowRight className="h-3 w-3" />
+                              <ArrowRight className="h-3 w-3 shrink-0" />
                             </span>
-                            <span className="text-sm font-medium line-clamp-1">{next.title}</span>
+                            <span className="text-sm font-medium truncate max-w-full block">{next.title}</span>
                           </span>
                         </Button>
                       </Link>
                     ) : (
-                      <div className="flex-1" />
+                      <div className="hidden sm:block flex-1" />
                     )}
                   </nav>
                 </>
