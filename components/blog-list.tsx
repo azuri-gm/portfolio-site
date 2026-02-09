@@ -123,11 +123,12 @@ export default function BlogList({ initialPosts }: BlogListProps) {
         <button
           onClick={() => setSelectedTag(null)}
           className={cn(
-            'inline-flex items-center rounded-full px-3 py-1 text-xs font-medium transition-colors',
+            'inline-flex items-center rounded-full px-3 py-1 text-xs font-medium transition-colors ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
             selectedTag === null
-              ? 'bg-foreground text-background'
+              ? 'bg-foreground text-background ring-2 ring-foreground'
               : 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
           )}
+          aria-pressed={selectedTag === null}
         >
           All
         </button>
@@ -136,16 +137,24 @@ export default function BlogList({ initialPosts }: BlogListProps) {
             key={tag}
             onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
             className={cn(
-              'inline-flex items-center rounded-full px-3 py-1 text-xs font-medium transition-colors',
+              'inline-flex items-center rounded-full px-3 py-1 text-xs font-medium transition-colors ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
               selectedTag === tag
-                ? 'bg-foreground text-background'
+                ? 'bg-foreground text-background ring-2 ring-foreground'
                 : 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
             )}
+            aria-pressed={selectedTag === tag}
           >
             {tag}
           </button>
         ))}
       </motion.div>
+
+      {/* Live region for screen readers */}
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {hasActiveFilters
+          ? `${filteredAndSortedPosts.length} result${filteredAndSortedPosts.length !== 1 ? 's' : ''} found`
+          : `${filteredAndSortedPosts.length} posts`}
+      </div>
 
       {/* Results count + clear */}
       {hasActiveFilters && (

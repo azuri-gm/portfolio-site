@@ -37,7 +37,7 @@ export function CopyButton({ text, className }: CopyButtonProps) {
       size="icon"
       onClick={handleCopy}
       className={cn(
-        'h-7 w-7 opacity-0 group-hover/code:opacity-100 transition-opacity',
+        'h-7 w-7 opacity-50 hover:opacity-100 focus-visible:opacity-100 transition-opacity',
         copied && 'opacity-100',
         className,
       )}
