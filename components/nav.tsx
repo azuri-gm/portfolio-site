@@ -27,7 +27,7 @@ export function Nav() {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b bg-background/80 backdrop-blur-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/60 backdrop-blur-xl">
       <div className="container mx-auto">
         <div className="flex h-16 items-center px-4">
           <div className="flex items-center justify-between w-full md:w-auto">
@@ -35,8 +35,8 @@ export function Nav() {
           </div>
 
           <div className="md:flex items-center hidden">
-            <Button variant="ghost" className="pl-0">
-              <Avatar className="h-8 w-8 mr-2">
+            <Button variant="ghost" className="pl-0 hover:bg-transparent">
+              <Avatar className="h-8 w-8 mr-2 ring-1 ring-border">
                 <AvatarImage
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-4rLeNeknOMbSBX3pmXovv9olVfe8k6.png"
                   alt="Avatar"
@@ -58,7 +58,7 @@ export function Nav() {
                     className={cn(
                       'relative px-3 py-2 text-sm font-medium transition-colors',
                       active
-                        ? 'text-foreground'
+                        ? 'text-primary'
                         : 'text-muted-foreground hover:text-foreground/80',
                     )}
                   >
@@ -66,7 +66,7 @@ export function Nav() {
                     {active && (
                       <motion.span
                         layoutId="nav-underline"
-                        className="absolute bottom-0 left-2 right-2 h-[2px] bg-foreground rounded-full"
+                        className="absolute bottom-0 left-2 right-2 h-[2px] bg-primary rounded-full shadow-[0_0_8px_hsl(24_95%_53%/0.4)]"
                         transition={{
                           type: 'spring',
                           stiffness: 380,

@@ -69,10 +69,10 @@ export function Timeline() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: index * 0.08 }}
         >
-          <Card className="border-l-2 border-l-primary/20 hover:border-l-primary/50 transition-colors">
+          <Card className="border-l-2 border-l-primary/30 hover:border-l-primary/60 hover:shadow-glow-sm transition-all duration-300 bg-card/50 border-border/50">
             <CardHeader className="pb-3">
               <div className="flex items-start gap-4">
-                <div className="relative w-10 h-10 rounded-md overflow-hidden bg-muted flex-shrink-0">
+                <div className="relative w-10 h-10 rounded-md overflow-hidden bg-muted/50 flex-shrink-0 ring-1 ring-border/50">
                   <Image
                     src={experience.logo || '/placeholder.svg'}
                     alt={`${experience.company} logo`}
@@ -84,12 +84,12 @@ export function Timeline() {
                   <div className="flex items-start justify-between gap-2">
                     <div>
                       <h3 className="text-sm font-semibold leading-snug">{experience.title}</h3>
-                      <p className="text-xs text-muted-foreground mt-0.5">
+                      <p className="text-xs text-primary/70 mt-0.5">
                         {experience.company}
                       </p>
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0">
-                      <Badge variant="outline" className="text-[10px] px-2 py-0 h-5 font-normal hidden sm:inline-flex">
+                      <Badge variant="outline" className="text-[10px] px-2 py-0 h-5 font-normal hidden sm:inline-flex border-primary/20 text-muted-foreground">
                         {experience.type}
                       </Badge>
                       <span className="text-[11px] text-muted-foreground whitespace-nowrap">
@@ -101,11 +101,11 @@ export function Timeline() {
               </div>
             </CardHeader>
             <CardContent className="pt-0">
-              <Separator className="mb-3" />
+              <Separator className="mb-3 bg-border/50" />
               <ul className="space-y-2">
                 {experience.responsibilities.map((item, i) => (
                   <li key={i} className="flex items-start text-xs text-muted-foreground leading-relaxed">
-                    <span className="mr-2 text-primary/40 mt-px flex-shrink-0">{'--'}</span>
+                    <span className="mr-2 text-primary/50 mt-px flex-shrink-0">{'--'}</span>
                     <span>{item}</span>
                   </li>
                 ))}

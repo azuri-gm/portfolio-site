@@ -71,7 +71,7 @@ export default function BlogList({ initialPosts }: BlogListProps) {
         transition={{ duration: 0.4 }}
         className="mb-10"
       >
-        <h1 className="text-3xl font-bold tracking-tight mb-2">Blog</h1>
+        <h1 className="text-3xl font-bold tracking-tighter mb-2">Blog</h1>
         <p className="text-muted-foreground">
           Thoughts on development, design, and building for the web.
         </p>
@@ -90,7 +90,7 @@ export default function BlogList({ initialPosts }: BlogListProps) {
             placeholder="Search posts..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            className="pl-9 h-9"
+            className="pl-9 h-9 bg-card/50 border-border/50 focus:border-primary/50"
           />
           {searchQuery && (
             <button
@@ -103,7 +103,7 @@ export default function BlogList({ initialPosts }: BlogListProps) {
           )}
         </div>
         <Select value={sortOrder} onValueChange={(value: 'newest' | 'oldest') => setSortOrder(value)}>
-          <SelectTrigger className="w-36 h-9">
+          <SelectTrigger className="w-36 h-9 bg-card/50 border-border/50">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -123,10 +123,10 @@ export default function BlogList({ initialPosts }: BlogListProps) {
         <button
           onClick={() => setSelectedTag(null)}
           className={cn(
-            'inline-flex items-center rounded-full px-3 py-1 text-xs font-medium transition-colors',
+            'inline-flex items-center rounded-full px-3 py-1 text-xs font-medium transition-all duration-200',
             selectedTag === null
-              ? 'bg-foreground text-background'
-              : 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+              ? 'bg-primary text-primary-foreground shadow-glow-sm'
+              : 'bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border/50',
           )}
         >
           All
@@ -136,10 +136,10 @@ export default function BlogList({ initialPosts }: BlogListProps) {
             key={tag}
             onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
             className={cn(
-              'inline-flex items-center rounded-full px-3 py-1 text-xs font-medium transition-colors',
+              'inline-flex items-center rounded-full px-3 py-1 text-xs font-medium transition-all duration-200',
               selectedTag === tag
-                ? 'bg-foreground text-background'
-                : 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+                ? 'bg-primary text-primary-foreground shadow-glow-sm'
+                : 'bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border/50',
             )}
           >
             {tag}
@@ -157,7 +157,7 @@ export default function BlogList({ initialPosts }: BlogListProps) {
           <p className="text-sm text-muted-foreground">
             {filteredAndSortedPosts.length} result{filteredAndSortedPosts.length !== 1 ? 's' : ''}
           </p>
-          <Button variant="ghost" size="sm" onClick={clearAllFilters} className="text-xs h-7">
+          <Button variant="ghost" size="sm" onClick={clearAllFilters} className="text-xs h-7 text-primary/70 hover:text-primary">
             Clear filters
           </Button>
         </motion.div>
@@ -176,19 +176,19 @@ export default function BlogList({ initialPosts }: BlogListProps) {
               layout
             >
               <Link href={`/blog/${post.id}`} className="group block">
-                <article className="py-6">
+                <article className="py-6 rounded-lg transition-all duration-200 hover:bg-primary/[0.02]">
                   <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
                     <time>{format(parseDate(post.date), 'MMM d, yyyy')}</time>
-                    <span className="text-border">{'/'}</span>
+                    <span className="text-primary/30">{'/'}</span>
                     <span className="flex items-center gap-1">
                       <Clock className="h-3 w-3" />
                       {calculateReadingTime(post.content || '')} min
                     </span>
-                    <span className="text-border">{'/'}</span>
+                    <span className="text-primary/30">{'/'}</span>
                     <span>{formatRelativeTime(post.date)}</span>
                   </div>
 
-                  <h2 className="text-lg font-semibold leading-snug mb-1.5 group-hover:text-primary transition-colors">
+                  <h2 className="text-lg font-semibold leading-snug mb-1.5 group-hover:text-primary transition-colors duration-200">
                     {post.title}
                   </h2>
 
@@ -204,17 +204,17 @@ export default function BlogList({ initialPosts }: BlogListProps) {
                         <Badge
                           key={tag}
                           variant="secondary"
-                          className="text-[10px] px-2 py-0 h-5 font-normal"
+                          className="text-[10px] px-2 py-0 h-5 font-normal border border-border/50"
                         >
                           {tag}
                         </Badge>
                       ))}
                     </div>
-                    <ArrowRight className="h-4 w-4 text-muted-foreground opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
+                    <ArrowRight className="h-4 w-4 text-primary/60 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200" />
                   </div>
                 </article>
                 {index < filteredAndSortedPosts.length - 1 && (
-                  <Separator />
+                  <Separator className="bg-border/50" />
                 )}
               </Link>
             </motion.div>
@@ -230,8 +230,8 @@ export default function BlogList({ initialPosts }: BlogListProps) {
           transition={{ duration: 0.3 }}
           className="flex flex-col items-center justify-center py-20"
         >
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-muted mb-4">
-            <FileText className="h-5 w-5 text-muted-foreground" />
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 border border-primary/20 mb-4">
+            <FileText className="h-5 w-5 text-primary/60" />
           </div>
           <h3 className="text-sm font-medium mb-1">No posts found</h3>
           <p className="text-sm text-muted-foreground text-center max-w-xs mb-4">
@@ -240,7 +240,7 @@ export default function BlogList({ initialPosts }: BlogListProps) {
               : `No posts tagged with "${selectedTag}".`}
             {' '}Try adjusting your search or filters.
           </p>
-          <Button variant="outline" size="sm" onClick={clearAllFilters}>
+          <Button variant="outline" size="sm" onClick={clearAllFilters} className="border-primary/30 hover:border-primary/60">
             Clear filters
           </Button>
         </motion.div>

@@ -63,29 +63,29 @@ const components = {
     <li className="pl-1" {...props} />
   ),
   a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
-    <a className="text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors" {...props} />
+    <a className="text-primary underline underline-offset-4 decoration-primary/30 hover:decoration-primary transition-colors" {...props} />
   ),
   blockquote: (props: React.BlockquoteHTMLAttributes<HTMLQuoteElement>) => (
     <blockquote
-      className="my-6 border-l-2 border-border bg-muted/40 py-3 pl-4 pr-4 text-foreground/80 italic rounded-r-md"
+      className="my-6 border-l-2 border-primary/30 bg-primary/[0.03] py-3 pl-4 pr-4 text-foreground/80 italic rounded-r-md"
       {...props}
     />
   ),
-  hr: () => <Separator className="my-8" />,
+  hr: () => <Separator className="my-8 bg-border/50" />,
   table: (props: React.TableHTMLAttributes<HTMLTableElement>) => (
     <div className="my-6 w-full overflow-auto">
       <table className="w-full border-collapse text-sm" {...props} />
     </div>
   ),
   th: (props: React.ThHTMLAttributes<HTMLTableCellElement>) => (
-    <th className="border border-border px-4 py-2 text-left font-medium bg-muted/50" {...props} />
+    <th className="border border-border/50 px-4 py-2 text-left font-medium bg-primary/[0.03]" {...props} />
   ),
   td: (props: React.TdHTMLAttributes<HTMLTableCellElement>) => (
-    <td className="border border-border px-4 py-2" {...props} />
+    <td className="border border-border/50 px-4 py-2" {...props} />
   ),
   img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
     // eslint-disable-next-line @next/next/no-img-element
-    <img className="my-6 rounded-lg border border-border" alt={props.alt || ''} {...props} />
+    <img className="my-6 rounded-lg border border-border/50" alt={props.alt || ''} {...props} />
   ),
   code: ({ node, inline, className, children, ...props }: any) => {
     const match = /language-(\w+)/.exec(className || '')
@@ -93,8 +93,8 @@ const components = {
     return !inline && match
       ? (
           <div className="group/code relative my-6 max-w-full overflow-hidden">
-            <div className="flex items-center justify-between rounded-t-lg bg-[#1d1f21] px-4 py-2 border border-b-0 border-[#2d2f31]">
-              <span className="text-xs text-neutral-400 font-mono">{match[1]}</span>
+            <div className="flex items-center justify-between rounded-t-lg bg-[#1a1a1a] px-4 py-2 border border-b-0 border-border/30">
+              <span className="text-xs text-primary/60 font-mono">{match[1]}</span>
               <CopyButton text={codeString} />
             </div>
             <SyntaxHighlighter
@@ -107,10 +107,11 @@ const components = {
                 borderTopRightRadius: 0,
                 borderBottomLeftRadius: '0.5rem',
                 borderBottomRightRadius: '0.5rem',
-                border: '1px solid #2d2f31',
+                border: '1px solid hsl(0 0% 12%)',
                 borderTop: 'none',
                 overflowX: 'auto',
                 maxWidth: '100%',
+                background: '#111111',
               }}
               {...props}
             >
@@ -120,7 +121,7 @@ const components = {
         )
       : (
           <code
-            className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono text-foreground break-words"
+            className="rounded bg-primary/10 px-1.5 py-0.5 text-sm font-mono text-primary/90 break-words"
             {...props}
           >
             {children}
@@ -164,7 +165,7 @@ export default async function Post({
           <div className="max-w-2xl mx-auto lg:mx-0 lg:max-w-none">
             <Link
               href="/blog"
-              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
             >
               <ArrowLeft className="h-3.5 w-3.5" />
               Back to blog
@@ -179,14 +180,14 @@ export default async function Post({
                 {postData.tags && postData.tags.length > 0 && (
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {postData.tags.map(tag => (
-                      <Badge key={tag} variant="outline" className="text-xs font-normal">
+                      <Badge key={tag} variant="outline" className="text-xs font-normal border-primary/20 text-primary/70">
                         {tag}
                       </Badge>
                     ))}
                   </div>
                 )}
 
-                <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-balance leading-tight">
+                <h1 className="text-3xl md:text-4xl font-bold tracking-tighter text-balance leading-tight">
                   {postData.title}
                 </h1>
 
@@ -196,17 +197,17 @@ export default async function Post({
                   </p>
                 )}
 
-                <Separator className="my-6" />
+                <Separator className="my-6 bg-border/50" />
 
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   {postData.author && (
                     <>
                       <span className="font-medium text-foreground">{postData.author}</span>
-                      <span className="text-border">|</span>
+                      <span className="text-primary/30">|</span>
                     </>
                   )}
                   <time>{format(parseDate(postData.date), 'MMMM d, yyyy')}</time>
-                  <span className="text-border">|</span>
+                  <span className="text-primary/30">|</span>
                   <span>{readingTime} min read</span>
                 </div>
               </header>
@@ -221,17 +222,17 @@ export default async function Post({
               {/* Prev / Next navigation */}
               {(prev || next) && (
                 <>
-                  <Separator className="mt-12 mb-8" />
+                  <Separator className="mt-12 mb-8 bg-border/50" />
                   <nav className="flex flex-col sm:flex-row items-stretch gap-3 sm:gap-4 min-w-0" aria-label="Post navigation">
                     {prev ? (
                       <Link href={`/blog/${prev.id}`} className="flex-1 min-w-0 group">
                         <Button
                           variant="outline"
-                          className="w-full h-auto py-3 px-4 sm:py-4 sm:px-5 flex flex-col items-start gap-1 text-left"
+                          className="w-full h-auto py-3 px-4 sm:py-4 sm:px-5 flex flex-col items-start gap-1 text-left border-border/50 hover:border-primary/30 hover:bg-primary/[0.02] transition-all duration-200"
                           asChild
                         >
                           <span className="min-w-0 max-w-full">
-                            <span className="flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+                            <span className="flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-primary/70 transition-colors">
                               <ArrowLeft className="h-3 w-3 shrink-0" />
                               Previous
                             </span>
@@ -246,11 +247,11 @@ export default async function Post({
                       <Link href={`/blog/${next.id}`} className="flex-1 min-w-0 group">
                         <Button
                           variant="outline"
-                          className="w-full h-auto py-3 px-4 sm:py-4 sm:px-5 flex flex-col items-end gap-1 text-right"
+                          className="w-full h-auto py-3 px-4 sm:py-4 sm:px-5 flex flex-col items-end gap-1 text-right border-border/50 hover:border-primary/30 hover:bg-primary/[0.02] transition-all duration-200"
                           asChild
                         >
                           <span className="min-w-0 max-w-full">
-                            <span className="flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-foreground transition-colors">
+                            <span className="flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-primary/70 transition-colors">
                               Next
                               <ArrowRight className="h-3 w-3 shrink-0" />
                             </span>

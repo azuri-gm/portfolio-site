@@ -80,7 +80,7 @@ export default function UsesPage() {
         transition={{ duration: 0.4 }}
         className="mb-10"
       >
-        <h1 className="text-3xl font-bold tracking-tight mb-2">Uses</h1>
+        <h1 className="text-3xl font-bold tracking-tighter mb-2">Uses</h1>
         <p className="text-muted-foreground">
           The tools, hardware, and software I rely on day to day.
         </p>
@@ -95,16 +95,16 @@ export default function UsesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: categoryIndex * 0.08 }}
           >
-            <Badge variant="outline" className="text-[10px] font-medium mb-5 uppercase tracking-wider">
+            <Badge variant="outline" className="text-[10px] font-medium mb-5 uppercase tracking-wider border-primary/30 text-primary/80">
               {category.title}
             </Badge>
 
             <div>
               {category.items.map((item, itemIndex) => (
                 <div key={item.name}>
-                  <div className="group flex items-start gap-4 py-4 -mx-3 px-3 rounded-lg hover:bg-muted/50 transition-colors">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-md bg-muted flex-shrink-0 mt-0.5">
-                      <item.icon className="h-4 w-4 text-muted-foreground" />
+                  <div className="group flex items-start gap-4 py-4 -mx-3 px-3 rounded-lg hover:bg-primary/[0.03] transition-all duration-200">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary/10 border border-primary/10 flex-shrink-0 mt-0.5 group-hover:border-primary/20 transition-colors">
+                      <item.icon className="h-4 w-4 text-primary/70" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="text-sm font-medium leading-snug">{item.name}</h3>
@@ -114,14 +114,14 @@ export default function UsesPage() {
                     </div>
                   </div>
                   {itemIndex < category.items.length - 1 && (
-                    <Separator />
+                    <Separator className="bg-border/50" />
                   )}
                 </div>
               ))}
             </div>
 
             {categoryIndex < categories.length - 1 && (
-              <Separator className="mt-6" />
+              <Separator className="mt-6 bg-border/50" />
             )}
           </motion.section>
         ))}

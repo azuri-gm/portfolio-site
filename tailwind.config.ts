@@ -44,6 +44,20 @@ const config: Config = {
           foreground: 'hsl(var(--card-foreground))',
         },
       },
+      boxShadow: {
+        'glow-sm': '0 0 15px hsl(24 95% 53% / 0.15)',
+        'glow': '0 0 25px hsl(24 95% 53% / 0.2)',
+        'glow-lg': '0 0 40px hsl(24 95% 53% / 0.25)',
+      },
+      keyframes: {
+        'glow-pulse': {
+          '0%, 100%': { boxShadow: '0 0 20px hsl(24 95% 53% / 0.15)' },
+          '50%': { boxShadow: '0 0 30px hsl(24 95% 53% / 0.25)' },
+        },
+      },
+      animation: {
+        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],

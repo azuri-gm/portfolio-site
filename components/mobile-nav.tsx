@@ -37,9 +37,9 @@ export function MobileNav() {
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-[300px] sm:w-[400px] z-50">
-        <div className="flex items-center gap-2 border-b pb-4">
-          <Avatar>
+      <SheetContent side="left" className="w-[300px] sm:w-[400px] z-50 bg-card border-border/50">
+        <div className="flex items-center gap-2 border-b border-border/50 pb-4">
+          <Avatar className="ring-1 ring-primary/20">
             <AvatarImage
               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-4rLeNeknOMbSBX3pmXovv9olVfe8k6.png"
               alt="Avatar"
@@ -59,14 +59,14 @@ export function MobileNav() {
                 className={cn(
                   'relative flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition-colors',
                   active
-                    ? 'text-foreground'
+                    ? 'text-primary'
                     : 'text-muted-foreground hover:bg-accent/50 hover:text-foreground/80',
                 )}
               >
                 {active && (
                   <motion.span
                     layoutId="mobile-nav-highlight"
-                    className="absolute inset-0 rounded-md bg-accent"
+                    className="absolute inset-0 rounded-md bg-primary/10 border border-primary/20"
                     transition={{
                       type: 'spring',
                       stiffness: 380,
