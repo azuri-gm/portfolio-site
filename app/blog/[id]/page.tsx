@@ -268,10 +268,8 @@ export default async function Post({
             </article>
 
             {/* Table of contents sidebar */}
-            <aside className="hidden lg:block w-full max-w-[280px] justify-self-end">
-              <div className="sticky top-24">
-                <TableOfContents content={postData.content} />
-              </div>
+            <aside className="hidden lg:block w-full max-w-[280px] justify-self-end self-start sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-1">
+              <TableOfContents content={postData.content} />
             </aside>
           </div>
         </div>
