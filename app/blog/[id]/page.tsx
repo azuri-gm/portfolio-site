@@ -161,20 +161,20 @@ export default async function Post({
     return (
       <div className="min-h-screen bg-background overflow-x-hidden">
         <div className="container mx-auto px-4 py-8 pt-20 max-w-7xl overflow-x-hidden">
-          {/* Back link */}
-          <div className="max-w-2xl mx-auto lg:mx-0 lg:max-w-none">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
-            >
-              <ArrowLeft className="h-3.5 w-3.5" />
-              Back to blog
-            </Link>
-          </div>
-
-          <div className="flex gap-12 min-w-0">
+          <div className="mx-auto max-w-6xl min-w-0 lg:grid lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_280px] lg:gap-10 xl:gap-14">
             {/* Main content */}
-            <article className="flex-1 min-w-0 max-w-2xl mx-auto lg:mx-0">
+            <article className="min-w-0 max-w-3xl mx-auto lg:mx-0 lg:max-w-none">
+              {/* Back link */}
+              <div>
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors mb-8"
+                >
+                  <ArrowLeft className="h-3.5 w-3.5" />
+                  Back to blog
+                </Link>
+              </div>
+
               {/* Header */}
               <header className="mb-8">
                 {postData.tags && postData.tags.length > 0 && (
@@ -268,7 +268,7 @@ export default async function Post({
             </article>
 
             {/* Table of contents sidebar */}
-            <aside className="hidden lg:block w-56 shrink-0">
+            <aside className="hidden lg:block w-full max-w-[280px] justify-self-end">
               <div className="sticky top-24">
                 <TableOfContents content={postData.content} />
               </div>
