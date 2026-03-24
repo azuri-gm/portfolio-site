@@ -24,7 +24,7 @@ export default function AboutPage() {
         transition={{ duration: 0.4 }}
         className="mb-10"
       >
-        <h1 className="text-3xl font-bold tracking-tight mb-2">About</h1>
+        <h1 className="text-3xl font-bold tracking-tighter mb-2">About</h1>
         <p className="text-muted-foreground">
           A bit about me, my background, and what I work with.
         </p>
@@ -38,10 +38,10 @@ export default function AboutPage() {
         className="mb-10"
       >
         <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-          <MapPin className="h-3.5 w-3.5" />
+          <MapPin className="h-3.5 w-3.5 text-primary/70" />
           <span>Based in the US</span>
-          <span className="text-border">{'/'}</span>
-          <Briefcase className="h-3.5 w-3.5" />
+          <span className="text-primary/30">{'/'}</span>
+          <Briefcase className="h-3.5 w-3.5 text-primary/70" />
           <span>Senior Software Engineer</span>
         </div>
         <div className="space-y-4 text-sm leading-relaxed text-foreground/80">
@@ -57,7 +57,7 @@ export default function AboutPage() {
         </div>
       </motion.section>
 
-      <Separator className="mb-10" />
+      <Separator className="mb-10 bg-border/50" />
 
       {/* Skills */}
       <motion.section
@@ -66,13 +66,13 @@ export default function AboutPage() {
         transition={{ duration: 0.4, delay: 0.1 }}
         className="mb-10"
       >
-        <h2 className="text-sm font-medium text-muted-foreground mb-4">Technologies I work with</h2>
+        <h2 className="text-sm font-medium text-primary/80 mb-4 tracking-wide uppercase">Technologies I work with</h2>
         <div className="flex flex-wrap gap-2">
           {skills.map(skill => (
             <Badge
               key={skill}
               variant="secondary"
-              className="text-xs font-normal"
+              className="text-xs font-normal border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-200"
             >
               {skill}
             </Badge>
@@ -80,7 +80,7 @@ export default function AboutPage() {
         </div>
       </motion.section>
 
-      <Separator className="mb-10" />
+      <Separator className="mb-10 bg-border/50" />
 
       {/* Experience */}
       <motion.section
@@ -88,7 +88,7 @@ export default function AboutPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.15 }}
       >
-        <h2 className="text-sm font-medium text-muted-foreground mb-6">Work experience</h2>
+        <h2 className="text-sm font-medium text-primary/80 mb-6 tracking-wide uppercase">Work experience</h2>
         <Timeline />
       </motion.section>
     </div>
