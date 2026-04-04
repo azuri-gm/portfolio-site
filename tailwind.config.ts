@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import typography from '@tailwindcss/typography'
 
 const config: Config = {
   darkMode: ['class'],
@@ -27,6 +28,24 @@ const config: Config = {
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        browse: {
+          pill: {
+            DEFAULT: 'hsl(var(--browse-pill-bg))',
+            foreground: 'hsl(var(--browse-pill-fg))',
+            border: 'hsl(var(--browse-pill-border))',
+          },
+        },
+        chat: {
+          in: {
+            DEFAULT: 'hsl(var(--chat-bubble-in-bg))',
+            foreground: 'hsl(var(--chat-bubble-in-fg))',
+          },
+          out: {
+            DEFAULT: 'hsl(var(--chat-bubble-out-bg))',
+            foreground: 'hsl(var(--chat-bubble-out-fg))',
+          },
+          meta: 'hsl(var(--chat-meta-fg))',
+        },
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
@@ -64,7 +83,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [typography],
 }
 
 export default config
