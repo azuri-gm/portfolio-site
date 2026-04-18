@@ -1,13 +1,13 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { cn } from '@/lib/utils'
 import { Menu } from 'lucide-react'
 import { motion } from 'motion/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import * as React from 'react'
+import { Button } from '@/components/ui/button'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { cn } from '@/lib/utils'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
 const navItems = [
@@ -22,7 +22,8 @@ export function MobileNav() {
   const pathname = usePathname()
 
   const isActive = (href: string) => {
-    if (href === '/') return pathname === '/'
+    if (href === '/')
+      return pathname === '/'
     return pathname === href || pathname.startsWith(`${href}/`)
   }
 
@@ -49,7 +50,7 @@ export function MobileNav() {
           <span className="font-medium">Eduardo Gaytan</span>
         </div>
         <nav className="flex flex-col gap-1 mt-4">
-          {navItems.map(item => {
+          {navItems.map((item) => {
             const active = isActive(item.href)
             return (
               <Link

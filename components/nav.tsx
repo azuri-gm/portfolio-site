@@ -1,15 +1,11 @@
 'use client'
 
-import { cn } from '@/lib/utils'
 import { Search } from 'lucide-react'
-import { motion } from 'motion/react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { CommandMenu } from './command-menu'
+import { cn } from '@/lib/utils'
 import { MobileNav } from './mobile-nav'
 import { ThemeToggle } from './theme-toggle'
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
-import { Button } from './ui/button'
 
 const navItems = [
   { href: '/', label: 'Overview' },
@@ -18,79 +14,131 @@ const navItems = [
   { href: '/blog', label: 'Blog' },
 ]
 
+function openCommandPalette() {
+  const ev = new KeyboardEvent('keydown', { key: 'k', metaKey: true, bubbles: true })
+  document.dispatchEvent(ev)
+}
+
 export function Nav() {
   const pathname = usePathname()
 
   const isActive = (href: string) => {
-    if (href === '/') return pathname === '/'
+    if (href === '/')
+      return pathname === '/'
     return pathname === href || pathname.startsWith(`${href}/`)
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/60 backdrop-blur-xl">
-      <div className="container mx-auto">
-        <div className="flex h-16 items-center px-4">
-          <div className="flex items-center justify-between w-full md:w-auto">
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl"
+      style={{
+        background: 'hsl(var(--background) / 0.7)',
+        borderBottom: '1px solid hsl(var(--border))',
+      }}
+    >
+      <div className="mx-auto w-full max-w-[1280px] px-4 sm:px-6">
+        <div className="flex h-16 items-center gap-5">
+          {/* Mobile menu */}
+          <div className="md:hidden">
             <MobileNav />
           </div>
 
-          <div className="md:flex items-center hidden">
-            <Button variant="ghost" className="pl-0 hover:bg-transparent">
-              <Avatar className="h-8 w-8 mr-2 ring-1 ring-border">
-                <AvatarImage
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-4rLeNeknOMbSBX3pmXovv9olVfe8k6.png"
-                  alt="Avatar"
-                />
-                <AvatarFallback>EG</AvatarFallback>
-              </Avatar>
-              <span className="font-medium">Eduardo Gaytan</span>
-            </Button>
+          {/* Logo */}
+          <Link href="/" className="hidden md:flex items-center gap-2.5">
+            <span
+              className="font-mono"
+              style={{
+                width: 28,
+                height: 28,
+                borderRadius: 6,
+                background: 'hsl(24 95% 53% / 0.1)',
+                border: '1px solid hsl(24 95% 53% / 0.3)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: 11,
+                color: 'hsl(24 95% 53%)',
+                fontWeight: 600,
+              }}
+            >
+              eg
+            </span>
+            <span className="font-mono text-foreground" style={{ fontSize: 13, fontWeight: 500 }}>
+              Eduardo Gaytan
+            </span>
+          </Link>
+
+          {/* Nav links */}
+          <div className="hidden md:flex items-center justify-center flex-1 gap-1">
+            {navItems.map((item) => {
+              const active = isActive(item.href)
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    'relative font-mono transition-colors',
+                    active ? 'text-primary' : 'text-muted-foreground hover:text-foreground/85',
+                  )}
+                  style={{
+                    padding: '8px 14px',
+                    borderRadius: 6,
+                    fontSize: 12,
+                    letterSpacing: '0.02em',
+                  }}
+                >
+                  <span className="opacity-40 mr-1.5">/</span>
+                  {item.label}
+                  {active && (
+                    <span
+                      aria-hidden
+                      style={{
+                        position: 'absolute',
+                        bottom: -1,
+                        left: 12,
+                        right: 12,
+                        height: 1,
+                        background: 'hsl(24 95% 53%)',
+                        boxShadow: '0 0 8px hsl(24 95% 53% / 0.6)',
+                      }}
+                    />
+                  )}
+                </Link>
+              )
+            })}
           </div>
 
-          <div className="hidden md:flex items-center justify-center flex-1">
-            <nav className="flex items-center space-x-1">
-              {navItems.map(item => {
-                const active = isActive(item.href)
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={cn(
-                      'relative px-3 py-2 text-sm font-medium transition-colors',
-                      active
-                        ? 'text-primary'
-                        : 'text-muted-foreground hover:text-foreground/80',
-                    )}
-                  >
-                    {item.label}
-                    {active && (
-                      <motion.span
-                        layoutId="nav-underline"
-                        className="absolute bottom-0 left-2 right-2 h-[2px] bg-primary rounded-full shadow-[0_0_8px_hsl(24_95%_53%/0.4)]"
-                        transition={{
-                          type: 'spring',
-                          stiffness: 380,
-                          damping: 30,
-                        }}
-                      />
-                    )}
-                  </Link>
-                )
-              })}
-            </nav>
-          </div>
-
-          <div className="flex items-center justify-end space-x-4 ml-auto md:ml-0">
-            <CommandMenu>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="md:hidden"
-                aria-label="Open command menu"
-              >
-                <Search className="h-5 w-5" />
-              </Button>
-            </CommandMenu>
+          {/* Right actions */}
+          <div className="flex items-center gap-2 ml-auto">
+            <button
+              type="button"
+              onClick={openCommandPalette}
+              aria-label="Open command palette"
+              className="hidden sm:inline-flex items-center gap-2 font-mono text-muted-foreground hover:text-foreground transition-colors"
+              style={{
+                padding: '7px 10px 7px 12px',
+                borderRadius: 7,
+                border: '1px solid hsl(var(--border))',
+                background: 'hsl(var(--card) / 0.4)',
+                fontSize: 12,
+              }}
+            >
+              <Search className="h-3.5 w-3.5" />
+              <span>Search</span>
+              <span className="flex gap-0.5 ml-2">
+                <span className="v2-kbd">⌘</span>
+                <span className="v2-kbd">K</span>
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={openCommandPalette}
+              aria-label="Open command palette"
+              className="sm:hidden inline-flex items-center justify-center text-muted-foreground hover:text-foreground"
+              style={{ width: 36, height: 36, borderRadius: 6 }}
+            >
+              <Search className="h-5 w-5" />
+            </button>
             <ThemeToggle />
           </div>
         </div>

@@ -2,11 +2,11 @@
 
 import type { DialogProps } from '@radix-ui/react-dialog'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
-import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
 import { Command as CommandPrimitive } from 'cmdk'
 import { BookOpen, Home, Laptop, Search, User } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import * as React from 'react'
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
 
 const navItems = [
   {

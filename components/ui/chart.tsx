@@ -1,9 +1,9 @@
 'use client'
 
-import { cn } from '@/lib/utils'
 import * as React from 'react'
-
 import * as RechartsPrimitive from 'recharts'
+
+import { cn } from '@/lib/utils'
 
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: '', dark: '.dark' } as const
@@ -67,7 +67,7 @@ const ChartContainer = React.forwardRef<
 })
 ChartContainer.displayName = 'Chart'
 
-function ChartStyle({ id, config }: { id: string; config: ChartConfig }) {
+function ChartStyle({ id, config }: { id: string, config: ChartConfig }) {
   const colorConfig = Object.entries(config).filter(
     ([_, config]) => config.theme || config.color,
   )
@@ -104,8 +104,8 @@ const ChartTooltip = RechartsPrimitive.Tooltip
 
 const ChartTooltipContent = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
-  React.ComponentProps<'div'> & {
+  React.ComponentProps<typeof RechartsPrimitive.Tooltip>
+  & React.ComponentProps<'div'> & {
     hideLabel?: boolean
     hideIndicator?: boolean
     indicator?: 'line' | 'dot' | 'dashed'
@@ -264,8 +264,8 @@ const ChartLegend = RechartsPrimitive.Legend
 
 const ChartLegendContent = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<'div'> &
-  Pick<RechartsPrimitive.LegendProps, 'payload' | 'verticalAlign'> & {
+  React.ComponentProps<'div'>
+  & Pick<RechartsPrimitive.LegendProps, 'payload' | 'verticalAlign'> & {
     hideIcon?: boolean
     nameKey?: string
   }

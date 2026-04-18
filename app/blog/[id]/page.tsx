@@ -208,7 +208,11 @@ export default async function Post({
                   )}
                   <time>{format(parseDate(postData.date), 'MMMM d, yyyy')}</time>
                   <span className="text-primary/30">|</span>
-                  <span>{readingTime} min read</span>
+                  <span>
+                    {readingTime}
+                    {' '}
+                    min read
+                  </span>
                 </div>
               </header>
 
@@ -224,44 +228,48 @@ export default async function Post({
                 <>
                   <Separator className="mt-12 mb-8 bg-border/50" />
                   <nav className="flex flex-col sm:flex-row items-stretch gap-3 sm:gap-4 min-w-0" aria-label="Post navigation">
-                    {prev ? (
-                      <Link href={`/blog/${prev.id}`} className="flex-1 min-w-0 group">
-                        <Button
-                          variant="outline"
-                          className="w-full h-auto py-3 px-4 sm:py-4 sm:px-5 flex flex-col items-start gap-1 text-left border-border/50 hover:border-primary/30 hover:bg-primary/[0.02] transition-all duration-200"
-                          asChild
-                        >
-                          <span className="min-w-0 max-w-full">
-                            <span className="flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-primary/70 transition-colors">
-                              <ArrowLeft className="h-3 w-3 shrink-0" />
-                              Previous
-                            </span>
-                            <span className="text-sm font-medium truncate max-w-full block">{prev.title}</span>
-                          </span>
-                        </Button>
-                      </Link>
-                    ) : (
-                      <div className="hidden sm:block flex-1" />
-                    )}
-                    {next ? (
-                      <Link href={`/blog/${next.id}`} className="flex-1 min-w-0 group">
-                        <Button
-                          variant="outline"
-                          className="w-full h-auto py-3 px-4 sm:py-4 sm:px-5 flex flex-col items-end gap-1 text-right border-border/50 hover:border-primary/30 hover:bg-primary/[0.02] transition-all duration-200"
-                          asChild
-                        >
-                          <span className="min-w-0 max-w-full">
-                            <span className="flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-primary/70 transition-colors">
-                              Next
-                              <ArrowRight className="h-3 w-3 shrink-0" />
-                            </span>
-                            <span className="text-sm font-medium truncate max-w-full block">{next.title}</span>
-                          </span>
-                        </Button>
-                      </Link>
-                    ) : (
-                      <div className="hidden sm:block flex-1" />
-                    )}
+                    {prev
+                      ? (
+                          <Link href={`/blog/${prev.id}`} className="flex-1 min-w-0 group">
+                            <Button
+                              variant="outline"
+                              className="w-full h-auto py-3 px-4 sm:py-4 sm:px-5 flex flex-col items-start gap-1 text-left border-border/50 hover:border-primary/30 hover:bg-primary/[0.02] transition-all duration-200"
+                              asChild
+                            >
+                              <span className="min-w-0 max-w-full">
+                                <span className="flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-primary/70 transition-colors">
+                                  <ArrowLeft className="h-3 w-3 shrink-0" />
+                                  Previous
+                                </span>
+                                <span className="text-sm font-medium truncate max-w-full block">{prev.title}</span>
+                              </span>
+                            </Button>
+                          </Link>
+                        )
+                      : (
+                          <div className="hidden sm:block flex-1" />
+                        )}
+                    {next
+                      ? (
+                          <Link href={`/blog/${next.id}`} className="flex-1 min-w-0 group">
+                            <Button
+                              variant="outline"
+                              className="w-full h-auto py-3 px-4 sm:py-4 sm:px-5 flex flex-col items-end gap-1 text-right border-border/50 hover:border-primary/30 hover:bg-primary/[0.02] transition-all duration-200"
+                              asChild
+                            >
+                              <span className="min-w-0 max-w-full">
+                                <span className="flex items-center gap-1.5 text-xs text-muted-foreground group-hover:text-primary/70 transition-colors">
+                                  Next
+                                  <ArrowRight className="h-3 w-3 shrink-0" />
+                                </span>
+                                <span className="text-sm font-medium truncate max-w-full block">{next.title}</span>
+                              </span>
+                            </Button>
+                          </Link>
+                        )
+                      : (
+                          <div className="hidden sm:block flex-1" />
+                        )}
                   </nav>
                 </>
               )}

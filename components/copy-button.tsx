@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
 import { Check, Copy } from 'lucide-react'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -18,7 +18,8 @@ export function CopyButton({ text, className }: CopyButtonProps) {
       await navigator.clipboard.writeText(text)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
-    } catch {
+    }
+    catch {
       // Fallback for older browsers
       const textarea = document.createElement('textarea')
       textarea.value = text
@@ -43,11 +44,13 @@ export function CopyButton({ text, className }: CopyButtonProps) {
       )}
       aria-label={copied ? 'Copied' : 'Copy code'}
     >
-      {copied ? (
-        <Check className="h-3.5 w-3.5 text-green-500" />
-      ) : (
-        <Copy className="h-3.5 w-3.5" />
-      )}
+      {copied
+        ? (
+            <Check className="h-3.5 w-3.5 text-green-500" />
+          )
+        : (
+            <Copy className="h-3.5 w-3.5" />
+          )}
     </Button>
   )
 }

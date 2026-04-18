@@ -105,7 +105,7 @@ export function Timeline() {
               <ul className="space-y-2">
                 {experience.responsibilities.map((item, i) => (
                   <li key={i} className="flex items-start text-xs text-muted-foreground leading-relaxed">
-                    <span className="mr-2 text-primary/50 mt-px flex-shrink-0">{'--'}</span>
+                    <span className="mr-2 text-primary/50 mt-px flex-shrink-0">--</span>
                     <span>{item}</span>
                   </li>
                 ))}
