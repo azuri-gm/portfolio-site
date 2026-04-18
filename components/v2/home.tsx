@@ -148,7 +148,7 @@ export default function HomeV2({ posts }: HomeV2Props) {
                     {' '}
                     Based in the US
                   </span>
-                  <span style={{ color: 'hsl(24 95% 53% / 0.35)' }}>/</span>
+                  {/* <span style={{ color: 'hsl(24 95% 53% / 0.35)' }}>/</span>
                   <span className="inline-flex items-center gap-1.5">
                     <span
                       className="inline-block"
@@ -162,7 +162,7 @@ export default function HomeV2({ posts }: HomeV2Props) {
                     />
                     {' '}
                     Available for select work
-                  </span>
+                  </span> */}
                 </div>
               </Reveal>
             </div>
@@ -469,8 +469,8 @@ export default function HomeV2({ posts }: HomeV2Props) {
                 Building something that needs a steady pair of hands?
               </p>
               <div className="flex flex-wrap gap-3 justify-center">
-                <BtnLink href="mailto:hello@eduardogaytan.dev">
-                  hello@eduardogaytan.dev
+                <BtnLink href="mailto:lalo@hey.com">
+                  lalo@hey.com
                   {' '}
                   <Send className="h-4 w-4" />
                 </BtnLink>
@@ -492,7 +492,7 @@ export default function HomeV2({ posts }: HomeV2Props) {
             style={{ marginTop: 80, fontSize: 11 }}
           >
             <span>© 2026 eduardo gaytan</span>
-            <span>built with care in zsh</span>
+            <span>built with care</span>
           </div>
         </div>
       </section>
