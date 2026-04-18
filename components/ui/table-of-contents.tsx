@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { List } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 
 interface Heading {
@@ -132,7 +132,8 @@ export function TableOfContents({ content, className }: TableOfContentsProps) {
               <span className={cn(
                 'absolute left-0 top-1/2 -translate-y-1/2 w-0.5 rounded-full bg-foreground transition-all duration-200',
                 activeId === heading.id ? 'h-4 opacity-100' : 'h-0 opacity-0',
-              )} />
+              )}
+              />
               <span className="line-clamp-2">{heading.text}</span>
             </button>
           </li>

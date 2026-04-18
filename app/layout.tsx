@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import type React from 'react'
-import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { IBM_Plex_Mono, IBM_Plex_Sans } from 'next/font/google'
 import { CommandMenu } from '@/components/command-menu'
 import { Nav } from '@/components/nav'
 import { ThemeProvider } from '@/components/theme-provider'

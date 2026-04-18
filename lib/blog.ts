@@ -1,5 +1,5 @@
-import fs from 'fs'
-import path from 'path'
+import fs from 'node:fs'
+import path from 'node:path'
 import matter from 'gray-matter'
 
 const postsDirectory = path.join(process.cwd(), 'app/blog/posts')
@@ -16,8 +16,6 @@ export interface BlogPost {
   slug?: string
   content?: string
 }
-
-
 
 export function getSortedPostsData(): BlogPost[] {
   const fileNames = fs.readdirSync(postsDirectory)

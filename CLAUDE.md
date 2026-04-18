@@ -122,12 +122,12 @@ The project uses `@/` path aliases configured in `tsconfig.json`:
 2. **Frontmatter Schema:**
    ```yaml
    ---
-   title: 'Post Title'
-   date: 'YYYY-MM-DD'
-   description: 'Brief description'
-   tags: ['tag1', 'tag2']
-   author: 'Author Name'
-   image: '/image-path.png'
+   title: Post Title
+   date: YYYY-MM-DD
+   description: Brief description
+   tags: [tag1, tag2]
+   author: Author Name
+   image: /image-path.png
    ---
    ```
 
